@@ -22,9 +22,9 @@ Oracle数据库迁移可参考操作
 #### 执行导出
 
 ``` bash
-1、查找expdp命令文件所在位置
-  find / -name expdp
-  查询结果如：/home/oracle/product/12.2.0/dbhome_1/bin/expdp
+1、查找oracle安装路径
+  whereis oracle
+  查询结果如：oracle: /oracle/app/oracle/product/11.2.0/dbhome_1/bin/oracle
 2、进入bin目录下，执行下面命令
   ./expdp username/password@orcl schemas=username directory=data_dmp dumpfile=data.dmp logfile=data.log version=11.2.0.1.0
   其中：
@@ -75,9 +75,9 @@ Oracle数据库迁移可参考操作
 ```
 #### 执行导入
 ``` bash
-1、查找impdp命令文件所在位置
-  find / -name impdp
-  查询结果如：/home/oracle/product/12.2.0/dbhome_1/bin/impdp
+1、查找oracle安装路径
+  whereis oracle
+  查询结果如：oracle: /oracle/app/oracle/product/11.2.0/dbhome_1/bin/oracle
 2、进入bin目录下，执行下面命令，导入数据库
   ./impdp  userName02/password02 directory=data_dmp logfile=data.log dumpfile=data.dmp    remap_schema=userName01:userName02  remap_tablespace=tablespace01:tablespace02
   其中：
@@ -117,4 +117,3 @@ Oracle数据库迁移可参考操作
 1、导入/导出（乱码问题，需要设置Windows环境变量）
    NLS_LANG = AMERICAN_AMERICA.ZHS16GBK
 ```
-
