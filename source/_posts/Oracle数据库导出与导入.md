@@ -40,6 +40,7 @@ Oracle数据库迁移可参考操作
 
 #### 导入准备
 ``` bash
+0、sysdba角色登录oracle
 1、创建表空间命令如下，其中表空间名称及文件位置需自行定义
   CREATE TABLESPACE YHTS_DATA DATAFILE 'D:\app\data\ythdata_01.dbf' SIZE 8 G AUTOEXTEND OFF LOGGING   ONLINE
   PERMANENT
@@ -116,4 +117,26 @@ Oracle数据库迁移可参考操作
 ``` bash
 1、导入/导出（乱码问题，需要设置Windows环境变量）
    NLS_LANG = AMERICAN_AMERICA.ZHS16GBK
+```
+### 问题及解决办法记录
+##### 问题一
+``` bash
+1、导出时，提示报错信息
+   UDE-12154: operation generated ORACLE error 12154
+   ORA-12154: TNS:could not resolve the connect identifier specified
+2、解决办法
+  在SID前添加ip地址，完整导出语句示例如下
+  ./expdp username/password@127.0.0.1/orcl schemas=username directory=data_dmp dumpfile=data.dmp logfile=data.log version=11.2.0.1.0
+```
+##### 问题二
+``` bash
+1、导出时，提示报错信息
+   ORA-39002: invalid operation
+   ORA-39070: Unable to open the log file.
+   ORA-39087: directory name DUMP_DIR is invalid
+2、分析
+   数据泵导入导出的时候需要在Oracle内部创建一个directory来指定导出的目录，这个报错是指定的目录中，没有给出相应的read，write权限，导致最后的错误
+3、解决办法
+  sysdba角色登录oracle，给出相应的权限，执行如下命令
+  grant read,write on directory DUMP_DIR to 用户名;
 ```
