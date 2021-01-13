@@ -79,7 +79,10 @@ Oracle数据库迁移可参考操作
 1、查找oracle安装路径
   whereis oracle
   查询结果如：oracle: /oracle/app/oracle/product/11.2.0/dbhome_1/bin/oracle
-2、进入bin目录下，执行下面命令，导入数据库
+2、若数据库有多个SID，需要指定实例
+  windows下 set ORACLE_SID=xxxx 该修改仅对当前CMD窗口有效
+  linux下 export ORACLE_SID=xxxx; 
+3、进入bin目录下，执行下面命令，导入数据库
   ./impdp  userName02/password02 directory=data_dmp logfile=data.log dumpfile=data.dmp    remap_schema=userName01:userName02  remap_tablespace=tablespace01:tablespace02
   其中：
   userName02：导入数据库的用户名
