@@ -103,6 +103,26 @@ Oracle数据库迁移可参考操作
   remap_schema： 指定用户。userName01是导出数据源的用户名 userName02是目标数据的用户名
   remap_tablespace: 指定表空间。tablespace01是导出数据源的表空间 tablespace02是目标数据库的表空间
 ```
+#### 导入导出其他参数介绍
+``` bash
+1、导出参数
+   expdp s/s directory=dump_dir1 dumpfile=sas1.dmp logfile=aa.log
+   schemas=scott 
+   TABLES=emp,dept 
+   query='WHERE deptno=20'    带条件
+   TABLESPACES=temp,example  按表空间
+   FULL=y       整个库
+   content=all/metadata_only/data_only 所有/只导表元数据/表行 
+2、导入参数
+    impdp
+      REMAP_SCHEMA=scott:system    更改owner
+      TABLESPACES=example   导入表空间
+      TABLE_EXISTS_ACTION   追加数据
+      table_exists_action   {skip 是如果已存在表，则跳过并处理下一个对象；
+      append是为表增加数据；
+      truncate是截断表，然后为其增加新数据；
+      replace是删除已存在表，重新建表并追加数据} 
+```
 #### 涉及命令记录
 ``` bash
 1、删除目录命令（需要时执行），PATH为导出准备步骤4查询出来的DIRECTORY_NAME字段值
