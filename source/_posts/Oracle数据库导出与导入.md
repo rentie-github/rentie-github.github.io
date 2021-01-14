@@ -117,6 +117,7 @@ Oracle数据库迁移可参考操作
     impdp
       REMAP_SCHEMA=scott:system    更改owner
       TABLESPACES=example   导入表空间
+      partition_options=merge  将分区的数据合并在一起
       TABLE_EXISTS_ACTION   追加数据
       table_exists_action   {skip 是如果已存在表，则跳过并处理下一个对象；
       append是为表增加数据；
