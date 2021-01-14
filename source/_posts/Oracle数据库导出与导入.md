@@ -112,7 +112,7 @@ Oracle数据库迁移可参考操作
    query='WHERE deptno=20'    带条件
    TABLESPACES=temp,example  按表空间
    FULL=y       整个库
-   content=all/metadata_only/data_only 所有/只导表元数据/表行 
+   content=all/metadata_only/data_only 将导出对象定义及其所有数据/只导出对象定义/只导出对象数据
 2、导入参数
     impdp
       REMAP_SCHEMA=scott:system    更改owner
