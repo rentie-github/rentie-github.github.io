@@ -6,7 +6,7 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2020/9 | MarioのBLOG</title>
+  <title>JAVA树型结构导出excel，并合并单元格 | MarioのBLOG</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
   <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
@@ -23,13 +23,15 @@
         border-left-color: #3CC4C4;    /*左边框颜色*/
     }
   </style>
-  <meta name="description" content="一个作为备忘录的博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="MarioのBLOG">
-<meta property="og:url" content="http://yoursite.com/archives/2020/09/index.html">
+  <meta name="description" content="最近写了一个树型结构的目录导出Excel的代码逻辑，这里记录一下实现思路">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JAVA树型结构导出excel，并合并单元格">
+<meta property="og:url" content="http://yoursite.com/2021/01/21/JAVA%E6%A0%91%E5%9E%8B%E7%BB%93%E6%9E%84%E5%AF%BC%E5%87%BAexcel%EF%BC%8C%E5%B9%B6%E5%90%88%E5%B9%B6%E5%8D%95%E5%85%83%E6%A0%BC/index.html">
 <meta property="og:site_name" content="MarioのBLOG">
-<meta property="og:description" content="一个作为备忘录的博客">
+<meta property="og:description" content="最近写了一个树型结构的目录导出Excel的代码逻辑，这里记录一下实现思路">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-01-21T09:47:55.000Z">
+<meta property="article:modified_time" content="2021-01-21T10:02:24.616Z">
 <meta property="article:author" content="Mario">
 <meta name="twitter:card" content="summary">
   
@@ -169,71 +171,182 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-JAVA树型结构导出excel，并合并单元格" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/09/11/RabbitMQ%E6%95%99%E7%A8%8B-1/" class="archive-article-date">
-  	<time datetime="2020-09-11T01:31:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-11</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/09/11/RabbitMQ%E6%95%99%E7%A8%8B-1/">RabbitMQ教程</a>
+    <h1 class="article-title" itemprop="name">
+      JAVA树型结构导出excel，并合并单元格
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">mq</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+        <a href="/2021/01/21/JAVA%E6%A0%91%E5%9E%8B%E7%BB%93%E6%9E%84%E5%AF%BC%E5%87%BAexcel%EF%BC%8C%E5%B9%B6%E5%90%88%E5%B9%B6%E5%8D%95%E5%85%83%E6%A0%BC/" class="archive-article-date">
+  	<time datetime="2021-01-21T09:47:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近写了一个树型结构的目录导出Excel的代码逻辑，这里记录一下实现思路</p>
+<a id="more"></a>
 
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/队列//" class="article-tag-list-link color3">队列</a>
-        		</li>
-      		
-		</ul>
-	</div>
+<h6 id="查询目录列表，并转换为树型结构的数据"><a href="#查询目录列表，并转换为树型结构的数据" class="headerlink" title="查询目录列表，并转换为树型结构的数据"></a>查询目录列表，并转换为树型结构的数据</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">1、数据库查询数据，获得数据类型为List</span><br><span class="line"> List&lt;Map&lt;String, Object&gt;&gt; categorys = service.list(map);</span><br><span class="line"> </span><br><span class="line">2、转换为树型结构</span><br><span class="line"> /**</span><br><span class="line">     * 根据目录列表生成导出数据</span><br><span class="line">     * @param categoryList 原始数据列表</span><br><span class="line">     * @<span class="built_in">return</span></span><br><span class="line">     */</span><br><span class="line">    public List&lt;CategoryTree&gt; makeCategoryTree(List&lt;Map&lt;String, Object&gt;&gt; categoryList)&#123;</span><br><span class="line">        List&lt;CategoryTree&gt; categoryTree = new ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">if</span> (categoryList != null) &#123;</span><br><span class="line">            categoryList.forEach(f -&gt; &#123;</span><br><span class="line">                <span class="keyword">if</span> (Objects.equals(FIRST_CATEGORY_PARENYID,f.get(<span class="string">"PARENTID"</span>)))&#123;</span><br><span class="line">                    categoryTree.add(new CategoryTree(f.get(<span class="string">"ID"</span>).toString(),f.get(<span class="string">"NAME"</span>).toString(),FIRST_CATEGORY_PARENYID));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line">            //为一级目录设置子目录准备递归</span><br><span class="line">            <span class="keyword">for</span> (CategoryTree category:categoryTree) &#123;</span><br><span class="line">                //获取父菜单下所有子菜单调用getChildList</span><br><span class="line">                List&lt;CategoryTree&gt; childList = getChildList(category.getId(),categoryList);</span><br><span class="line">                category.setDatas(childList);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> categoryTree;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"> /**</span><br><span class="line">     * 递归获得下级目录</span><br><span class="line">     * @param resId</span><br><span class="line">     * @param categoryList</span><br><span class="line">     * @<span class="built_in">return</span></span><br><span class="line">     */</span><br><span class="line">    private List&lt;CategoryTree&gt; getChildList(String resId, List&lt;Map&lt;String, Object&gt;&gt; categoryList) &#123;</span><br><span class="line">        //构建子目录</span><br><span class="line">        List&lt;CategoryTree&gt; childList = new ArrayList&lt;&gt;();</span><br><span class="line">        //遍历传入的list</span><br><span class="line">        categoryList.forEach(f-&gt;&#123;</span><br><span class="line">            //所有目录的父id与传入的根节点id比较，若相等则为该级目录的子目录</span><br><span class="line">            <span class="keyword">if</span> (Objects.equals(f.get(<span class="string">"PARENTID"</span>),resId))&#123;</span><br><span class="line">                childList.add(new CategoryTree(f.get(<span class="string">"ID"</span>).toString(),f.get(<span class="string">"NAME"</span>).toString(),f.get(<span class="string">"PARENTID"</span>).toString()));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        //递归</span><br><span class="line">        childList.forEach(c-&gt;&#123;</span><br><span class="line">            c.setDatas(getChildList(c.getId(),categoryList));</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (childList.size() == 0)&#123;</span><br><span class="line">            <span class="built_in">return</span> null;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> childList;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h6 id="获得所有目录的最后一个节点"><a href="#获得所有目录的最后一个节点" class="headerlink" title="获得所有目录的最后一个节点"></a>获得所有目录的最后一个节点</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">    * 获得所有目录的最后一个节点</span><br><span class="line">    * @param categoryTree</span><br><span class="line">    * @<span class="built_in">return</span></span><br><span class="line">    */</span><br><span class="line">   public List&lt;String&gt; getCategoryTreeLastNode(List&lt;CategoryTree&gt; categoryTree)&#123;</span><br><span class="line">       List&lt;String&gt; nodes = new ArrayList&lt;&gt;();</span><br><span class="line">       <span class="keyword">if</span> (categoryTree != null) &#123;</span><br><span class="line">           categoryTree.forEach(f -&gt; &#123;</span><br><span class="line">               <span class="keyword">if</span> (Objects.isNull(f.getDatas()))&#123;</span><br><span class="line">                   nodes.add(f.getId());</span><br><span class="line">               &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                   getLastNode(f.getDatas(),nodes);</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;);</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line">       <span class="built_in">return</span> nodes;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   /**</span><br><span class="line">    * 递归获取最后一个节点</span><br><span class="line">    * @param categoryTrees 下级节点数据</span><br><span class="line">    * @param nodes 最后一集节点列表</span><br><span class="line">    */</span><br><span class="line">   private void getLastNode(List&lt;CategoryTree&gt; categoryTrees, List&lt;String&gt; nodes) &#123;</span><br><span class="line">       <span class="keyword">for</span> (CategoryTree categoryTree: categoryTrees) &#123;</span><br><span class="line">           <span class="keyword">if</span> (Objects.isNull(categoryTree.getDatas())) &#123;</span><br><span class="line">              nodes.add(categoryTree.getId());</span><br><span class="line">           &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">               getLastNode(categoryTree.getDatas(),nodes);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 
+<h6 id="获得目录所以分支的节点id与名字"><a href="#获得目录所以分支的节点id与名字" class="headerlink" title="获得目录所以分支的节点id与名字"></a>获得目录所以分支的节点id与名字</h6><p>循环所有目录的最后一个节点数组，获得其所有父级节点信息，形成一个List&lt;List<CategoryExcel>&gt;类型的数据，外层List是行数。内层List是列的数据</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">    * 获得所有节点的名称</span><br><span class="line">    * @param lastNodes 最后一级节点列表</span><br><span class="line">    * @param categorys 原始列表数据</span><br><span class="line">    * @<span class="built_in">return</span></span><br><span class="line">    */</span><br><span class="line">   public List&lt;List&lt;CategoryExcel&gt;&gt; queryParentNames(List&lt;String&gt; lastNodes,List&lt;Map&lt;String, Object&gt;&gt; categorys) &#123;</span><br><span class="line">       List&lt;List&lt;String&gt;&gt; categoryIds = new ArrayList&lt;&gt;();</span><br><span class="line">       List&lt;List&lt;CategoryExcel&gt;&gt; categoryNames = new ArrayList&lt;&gt;();</span><br><span class="line">       <span class="keyword">for</span>(int i=0;i&lt;lastNodes.size();i++)&#123;</span><br><span class="line">           //节点名称数组</span><br><span class="line">           List&lt;String&gt; parentIds = new ArrayList&lt;&gt;();</span><br><span class="line">           parentIds.add(lastNodes.get(i));</span><br><span class="line">           getParentId(categorys, lastNodes.get(i), parentIds);</span><br><span class="line"></span><br><span class="line">           //现在获得的节点id列表是倒叙的，需要进行顺序反转</span><br><span class="line">           Collections.reverse(parentIds);</span><br><span class="line">           categoryIds.add(parentIds);</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">for</span> (List&lt;String&gt; cIds: categoryIds) &#123;</span><br><span class="line">           List&lt;CategoryExcel&gt; nodeNames = new ArrayList&lt;&gt;();</span><br><span class="line">           <span class="keyword">for</span> (String cId: cIds) &#123;</span><br><span class="line">               <span class="keyword">for</span> (Map&lt;String, Object&gt; f: categorys) &#123;</span><br><span class="line">                   <span class="keyword">if</span> (Objects.equals(cId,f.get(<span class="string">"ID"</span>)))&#123;</span><br><span class="line">                       nodeNames.add(new CategoryExcel(f.get(<span class="string">"ID"</span>).toString(),f.get(<span class="string">"NAME"</span>).toString()));</span><br><span class="line">                   &#125;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">           categoryNames.add(nodeNames);</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="built_in">return</span> categoryNames;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   /**</span><br><span class="line">    * 递归获取父级信息</span><br><span class="line">    * @param categorys 原始列表数据</span><br><span class="line">    * @param id 节点id</span><br><span class="line">    * @param nodeIds 节点id数组</span><br><span class="line">    */</span><br><span class="line">   private void getParentId(List&lt;Map&lt;String, Object&gt;&gt; categorys, String id, List&lt;String&gt; nodeIds) &#123;</span><br><span class="line">       <span class="keyword">for</span> (Map&lt;String, Object&gt; f: categorys) &#123;</span><br><span class="line">           <span class="keyword">if</span> (Objects.equals(FIRST_CATEGORY_PARENYID,f.get(<span class="string">"PARENTID"</span>)))&#123;</span><br><span class="line">               <span class="built_in">continue</span>;</span><br><span class="line">           &#125;</span><br><span class="line">           //判断是否有父节点</span><br><span class="line">           <span class="keyword">if</span> (id.equals(f.get(<span class="string">"ID"</span>))) &#123;</span><br><span class="line">               nodeIds.add(f.get(<span class="string">"PARENTID"</span>).toString());</span><br><span class="line">               getParentId(categorys, f.get(<span class="string">"PARENTID"</span>).toString(), nodeIds);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 
+<h6 id="生成excel文件"><a href="#生成excel文件" class="headerlink" title="生成excel文件"></a>生成excel文件</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">//生成excel</span><br><span class="line">       XSSFWorkbook  wb = new XSSFWorkbook();</span><br><span class="line">       wb = creatSheet(wb,nodeNames);</span><br><span class="line"></span><br><span class="line">       //保存excel文件</span><br><span class="line">       String savePath = excelSavePath + <span class="string">"directoryExport"</span>;</span><br><span class="line">       File tempFilePath = new File(savePath);</span><br><span class="line">       String fileName = <span class="string">"安全生产档案目录.xlsx"</span>;</span><br><span class="line">       File tempFile = null;</span><br><span class="line">       tempFile = new File(tempFilePath,fileName);</span><br><span class="line">       //文件存在时先进行删除</span><br><span class="line">       tempFile.deleteOnExit();</span><br><span class="line"></span><br><span class="line">       try(FileOutputStream saveStream = new FileOutputStream (tempFile))&#123;</span><br><span class="line">           //保存文件</span><br><span class="line">           //把编辑过后的工作薄重新保存为excel文件</span><br><span class="line">           wb.write(saveStream);</span><br><span class="line">       &#125; catch (IOException e) &#123;</span><br><span class="line">           tempFile.deleteOnExit();</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       String resultPath = <span class="string">"/formParser?status=fileUpload&amp;action=filedownload&amp;fileName="</span>+fileName+<span class="string">"&amp;filePath="</span> + <span class="string">"directoryExport/"</span> + tempFile</span><br><span class="line">               .getName();</span><br></pre></td></tr></table></figure>
+
+<h6 id="填充数据，生成标题和表头"><a href="#填充数据，生成标题和表头" class="headerlink" title="填充数据，生成标题和表头"></a>填充数据，生成标题和表头</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">   * excel数据填充</span><br><span class="line">   * @param wb XSSFWorkbook对象</span><br><span class="line">   * @param datas 填充数据</span><br><span class="line">   * @<span class="built_in">return</span></span><br><span class="line">   */</span><br><span class="line">  public XSSFWorkbook creatSheet(XSSFWorkbook wb,List&lt;List&lt;CategoryExcel&gt;&gt; datas)&#123;</span><br><span class="line">      //建立新的sheet对象（excel的表单）</span><br><span class="line">      //新建sheet页</span><br><span class="line">      XSSFSheet sheet = wb.createSheet();</span><br><span class="line"></span><br><span class="line">      //新建单元格样式</span><br><span class="line">      XSSFCellStyle jz = wb.createCellStyle();</span><br><span class="line">      //水平居中</span><br><span class="line">      jz.setAlignment(HorizontalAlignment.CENTER);</span><br><span class="line">      //垂直居中</span><br><span class="line">      jz.setVerticalAlignment(VerticalAlignment.CENTER);</span><br><span class="line">      //自动换行</span><br><span class="line">      jz.setWrapText(<span class="literal">true</span>);</span><br><span class="line">      //第一行</span><br><span class="line">      XSSFRow row0 = sheet.createRow(0);</span><br><span class="line">      //设置行高</span><br><span class="line">      row0.setHeight((short) ((short) 30*20));</span><br><span class="line">      //创建单元格标题行</span><br><span class="line">      XSSFCell cellTitle = row0.createCell(0);</span><br><span class="line">      //设置单元格样式</span><br><span class="line">      XSSFCellStyle styleTitle = creatStyle(wb);</span><br><span class="line">      cellTitle.setCellStyle(styleTitle);</span><br><span class="line">      //设置单元格内容</span><br><span class="line">      cellTitle.setCellValue(<span class="string">"安全生产档案目录"</span>);</span><br><span class="line">      //合并单元格CellRangeAddress构造参数依次表示起始行，截至行，起始列， 截至列</span><br><span class="line">      sheet.addMergedRegion(new CellRangeAddress(0,0,0,6));</span><br><span class="line"></span><br><span class="line">      //创建内容样式</span><br><span class="line">      XSSFCellStyle styleContent = wb.createCellStyle();</span><br><span class="line">      styleContent.setWrapText(<span class="literal">true</span>);</span><br><span class="line">      styleContent.setAlignment(HorizontalAlignment.CENTER);</span><br><span class="line">      styleContent.setVerticalAlignment(VerticalAlignment.CENTER);</span><br><span class="line"></span><br><span class="line">      //创建单元格表头行</span><br><span class="line">      XSSFRow row1 = sheet.createRow(1);</span><br><span class="line">      //设置行高</span><br><span class="line">      row1.setHeight((short) 300);</span><br><span class="line">      //列</span><br><span class="line">      XSSFCell cell1_0 = row1.createCell(0);</span><br><span class="line">      cell1_0.setCellStyle(styleContent);</span><br><span class="line">      cell1_0.setCellValue(<span class="string">"序号"</span>);</span><br><span class="line"></span><br><span class="line">      XSSFCell cell1_1 = row1.createCell(1);</span><br><span class="line">      cell1_1.setCellStyle(styleContent);</span><br><span class="line">      cell1_1.setCellValue(<span class="string">"大项"</span>);</span><br><span class="line"></span><br><span class="line">      XSSFCell cell1_2 = row1.createCell(2);</span><br><span class="line">      cell1_2.setCellStyle(styleContent);</span><br><span class="line">      cell1_2.setCellValue(<span class="string">"小项"</span>);</span><br><span class="line"></span><br><span class="line">      XSSFCell cell1_3 = row1.createCell(3);</span><br><span class="line">      cell1_3.setCellStyle(styleContent);</span><br><span class="line">      cell1_3.setCellValue(<span class="string">"小项"</span>);</span><br><span class="line"></span><br><span class="line">      XSSFCell cell1_4 = row1.createCell(4);</span><br><span class="line">      cell1_4.setCellStyle(styleContent);</span><br><span class="line">      cell1_4.setCellValue(<span class="string">"小项"</span>);</span><br><span class="line"></span><br><span class="line">      XSSFCell cell1_5 = row1.createCell(5);</span><br><span class="line">      cell1_5.setCellStyle(styleContent);</span><br><span class="line">      cell1_5.setCellValue(<span class="string">"小项"</span>);</span><br><span class="line"></span><br><span class="line">      XSSFCell cell1_6 = row1.createCell(6);</span><br><span class="line">      cell1_6.setCellStyle(styleContent);</span><br><span class="line">      cell1_6.setCellValue(<span class="string">"小项"</span>);</span><br><span class="line"></span><br><span class="line">      //数据填充</span><br><span class="line">      setValue(sheet,styleContent,datas);</span><br><span class="line"></span><br><span class="line">      <span class="built_in">return</span> wb;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<h6 id="填充数据，填充内容"><a href="#填充数据，填充内容" class="headerlink" title="填充数据，填充内容"></a>填充数据，填充内容</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">   * 单元格赋值</span><br><span class="line">   * @param sheet XSSFSheet对象</span><br><span class="line">   * @param styleContent XSSFCellStyle对象</span><br><span class="line">   * @param datas 填充数据</span><br><span class="line">   */</span><br><span class="line">  public void setValue(XSSFSheet sheet,XSSFCellStyle styleContent, List&lt;List&lt;CategoryExcel&gt;&gt; datas)&#123;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">for</span> (int i=0;i&lt;datas.size();i++) &#123;</span><br><span class="line">          List&lt;CategoryExcel&gt; cellDatas = datas.get(i);</span><br><span class="line">          //创建单元格表行</span><br><span class="line">          XSSFRow row1 = sheet.createRow(2+i);</span><br><span class="line">          //设置行高</span><br><span class="line">          row1.setHeight((short) 300);</span><br><span class="line">          //列</span><br><span class="line">          XSSFCell cell1 = row1.createCell(0);</span><br><span class="line">          cell1.setCellStyle(styleContent);</span><br><span class="line">          cell1.setCellValue(i+1);</span><br><span class="line">          <span class="keyword">for</span> (int j=0;j&lt;cellDatas.size();j++) &#123;</span><br><span class="line">              //列</span><br><span class="line">              XSSFCell cell = row1.createCell(1+j);</span><br><span class="line">              cell.setCellStyle(styleContent);</span><br><span class="line">              cell.setCellValue(cellDatas.get(j).getName());</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      //单元格合并</span><br><span class="line">      cellMerge(sheet,datas);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h6 id="合并单元格"><a href="#合并单元格" class="headerlink" title="合并单元格"></a>合并单元格</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">   * 单元格合并</span><br><span class="line">   * @param sheet XSSFSheet对象</span><br><span class="line">   * @param datas 填充数据</span><br><span class="line">   */</span><br><span class="line">  public void cellMerge(XSSFSheet sheet, List&lt;List&lt;CategoryExcel&gt;&gt; datas)&#123;</span><br><span class="line"></span><br><span class="line">      //循环6级分类列做合并</span><br><span class="line">      <span class="keyword">for</span> (int j=0;j&lt;6;j++)&#123;</span><br><span class="line">          //上一个目录</span><br><span class="line">          String perCategory = <span class="string">""</span>;</span><br><span class="line">          //当前目录</span><br><span class="line">          String category = <span class="string">""</span>;</span><br><span class="line"></span><br><span class="line">          //要合并的第一行</span><br><span class="line">          int startMergeCol = 2;</span><br><span class="line">          //合并的最后行</span><br><span class="line">          int endMergeCol = 1;</span><br><span class="line"></span><br><span class="line">          <span class="keyword">for</span> (int i=0;i&lt;datas.size();i++) &#123;</span><br><span class="line">              List&lt;CategoryExcel&gt; cellDatas = datas.get(i);</span><br><span class="line">              <span class="keyword">if</span>(cellDatas.size()&gt;j)&#123;</span><br><span class="line">                  //取每行的对应级目录id,使用id判断，避免名称相同的情况被合并</span><br><span class="line">                  category = cellDatas.get(j).getId();</span><br><span class="line">                  <span class="keyword">if</span> (<span class="string">""</span>.equals(perCategory))&#123;</span><br><span class="line">                      perCategory = category;</span><br><span class="line">                  &#125;</span><br><span class="line">                  <span class="keyword">if</span>(category.equals(perCategory))&#123;</span><br><span class="line">                      endMergeCol++;</span><br><span class="line">                  &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                      <span class="keyword">if</span> (endMergeCol&gt;startMergeCol)&#123;</span><br><span class="line">                          //两者不相同时，融合之前相同的行</span><br><span class="line">                          //合并单元格CellRangeAddress构造参数依次表示起始行，截至行，起始列， 截至列</span><br><span class="line">                          sheet.addMergedRegion(new CellRangeAddress(startMergeCol, endMergeCol, j+1, j+1));</span><br><span class="line">                      &#125;</span><br><span class="line">                      startMergeCol = endMergeCol+1;</span><br><span class="line">                      endMergeCol = startMergeCol;</span><br><span class="line">                      perCategory = category;</span><br><span class="line">                  &#125;</span><br><span class="line">              &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                  <span class="keyword">if</span> (i==0)&#123;</span><br><span class="line">                      //如果第一行为空，合并的开始结束行直接加1</span><br><span class="line">                      startMergeCol++;</span><br><span class="line">                      endMergeCol++;</span><br><span class="line">                  &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                      <span class="keyword">if</span> (endMergeCol&gt;startMergeCol)&#123;</span><br><span class="line">                          sheet.addMergedRegion(new CellRangeAddress(startMergeCol, endMergeCol, j+1, j+1));</span><br><span class="line">                      &#125;</span><br><span class="line">                      startMergeCol = endMergeCol+1;</span><br><span class="line">                      endMergeCol = startMergeCol;</span><br><span class="line">                  &#125;</span><br><span class="line"></span><br><span class="line">              &#125;</span><br><span class="line"></span><br><span class="line">              //处理最后一个不合并的问题</span><br><span class="line">              <span class="keyword">if</span> (i == (datas.size()-1) )&#123;</span><br><span class="line">                  <span class="keyword">if</span> (endMergeCol&gt;startMergeCol)&#123;</span><br><span class="line">                      //合并单元格CellRangeAddress构造参数依次表示起始行，截至行，起始列， 截至列</span><br><span class="line">                      sheet.addMergedRegion(new CellRangeAddress(startMergeCol, endMergeCol, j+1, j+1));</span><br><span class="line">                  &#125;</span><br><span class="line">              &#125;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      </span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2021/01/21/JAVA%E6%A0%91%E5%9E%8B%E7%BB%93%E6%9E%84%E5%AF%BC%E5%87%BAexcel%EF%BC%8C%E5%B9%B6%E5%90%88%E5%B9%B6%E5%8D%95%E5%85%83%E6%A0%BC/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2021/01/07/Oracle%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AF%BC%E5%87%BA%E4%B8%8E%E5%AF%BC%E5%85%A5/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Oracle数据库导出与导入</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-6"><a class="toc-link" href="#查询目录列表，并转换为树型结构的数据"><span class="toc-number">1.</span> <span class="toc-text">查询目录列表，并转换为树型结构的数据</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#获得所有目录的最后一个节点"><span class="toc-number">2.</span> <span class="toc-text">获得所有目录的最后一个节点</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#获得目录所以分支的节点id与名字"><span class="toc-number">3.</span> <span class="toc-text">获得目录所以分支的节点id与名字</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#生成excel文件"><span class="toc-number">4.</span> <span class="toc-text">生成excel文件</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#填充数据，生成标题和表头"><span class="toc-number">5.</span> <span class="toc-text">填充数据，生成标题和表头</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#填充数据，填充内容"><span class="toc-number">6.</span> <span class="toc-text">填充数据，填充内容</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#合并单元格"><span class="toc-number">7.</span> <span class="toc-text">合并单元格</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -260,8 +373,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
