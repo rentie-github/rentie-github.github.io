@@ -21,7 +21,7 @@ $ git config --global user.name "username"
 $ git config --global user.email "username@example.com"
 ```
 
-2、打开git bash，运行：ssh-keygen -t rsa -C “youremail@example.com” 把其中的邮件地址换成自己的邮件地址，然后一路回车
+2、打开git bash，运行：ssh-keygen -t rsa -C "youremail@example.com" 把其中的邮件地址换成自己的邮件地址，然后一路回车
 
 3、最后完成后，会在用户主目录下生成.ssh目录，里面有id_rsa和id_rsa.pub两个文件，这两个就是SSH key密钥对，id_rsa是私钥，千万不能泄露出去，id_rsa.pub是公钥，可以放心地告诉任何人。
 
@@ -59,6 +59,7 @@ $ npm install npm install hexo-deployer-git --save
 ``` bash
 $ npm install --save hexo-admin
 ```
+
 ### 使用
 进入博客本地目录，执行下述命令
 
@@ -67,7 +68,7 @@ $ hexo clean  --清理项目
 $ hexo g --本地编译
 $ hexo s --本地部署
 ```
-打开浏览器输入[http://localhost:4000/admin]
+打开浏览器输入[http://localhost:4000/admin],即可在本地进行博客编写
 现在就可以正常使用hexo-admin插件了；hexo-admin插件的具体使用自行百度
 
 ### 发布博客
