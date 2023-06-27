@@ -66,6 +66,189 @@ public @interface ExcelCascadeDictAnnotation {
 }
 
 ```
+#### 自定义整型、日期格式生成的SheetWriteHandler
+``` bash
+/**
+ * @author rentie
+ * @date 2023/6/8 15:25
+ * @desc 日期、整型类型设置单元格格式
+ */
+public class DataFormatSheetWriteHandler implements SheetWriteHandler {
+
+    /**
+     * 日期类型单元格的ColumnIndex, ColumnIndex 从0开始计数
+     */
+    private List<Integer> dateColumnIndexList;
+
+    /**
+     * 整型类型单元格的ColumnIndex, ColumnIndex 从0开始计数
+     */
+    private List<Integer> intColumnIndexList;
+
+    public DataFormatSheetWriteHandler(final List<Integer> dateColumnIndexList,
+        final List<Integer> intColumnIndexList) {
+        this.dateColumnIndexList = dateColumnIndexList;
+        this.intColumnIndexList = intColumnIndexList;
+    }
+
+    public DataFormatSheetWriteHandler() {}
+
+    @Override
+    public void afterSheetCreate(final WriteWorkbookHolder writeWorkbookHolder,
+        final WriteSheetHolder writeSheetHolder) {
+
+        // 创建日期数据规则
+        this.dateColumnIndexList.forEach(index -> {
+            // 检查的区域
+            final CellRangeAddressList cellRangeAddressList = new CellRangeAddressList(1, 65536, index, index);
+            final DataValidationHelper helper = writeSheetHolder.getSheet().getDataValidationHelper();
+            // DVConstraint constrain1 = DVConstraint.CreateDateConstraint(条件,"最小时间","最大时间","时间格式"); //这是检查时间的方法
+            final DataValidationConstraint constraint = helper.createDateConstraint(
+                DataValidationConstraint.OperatorType.BETWEEN, "Date(1900, 1, 1)", "Date(2099, 12, 31)", "yyyy-MM-dd");
+            final DataValidation dataValidation = helper.createValidation(constraint, cellRangeAddressList);
+            dataValidation.setErrorStyle(DataValidation.ErrorStyle.STOP);
+            // 输入无效值时是否显示错误框
+            dataValidation.setShowErrorBox(true);
+            // 验证输入数据是否真确
+            dataValidation.setSuppressDropDownArrow(true);
+            // 设置无效值时 是否弹出提示框
+            dataValidation.setShowPromptBox(true);
+            // 设置无效值时的提示框内容 createErrorBox
+            dataValidation.createErrorBox("提示", "请输入[yyyy-MM-dd]格式日期！！！");
+            dataValidation.createPromptBox("提示", "yyyy-MM-dd 格式日期");
+            writeSheetHolder.getSheet().addValidationData(dataValidation);
+        });
+
+        // 创建整型数据规则
+        this.intColumnIndexList.forEach(index -> {
+            // 检查的区域
+            final CellRangeAddressList cellRangeAddressList = new CellRangeAddressList(1, 65536, index, index);
+            final DataValidationHelper helper = writeSheetHolder.getSheet().getDataValidationHelper();
+            final DataValidationConstraint constraint = helper.createIntegerConstraint(
+                DataValidationConstraint.OperatorType.BETWEEN, "0", String.valueOf(Integer.MAX_VALUE));
+            final DataValidation dataValidation = helper.createValidation(constraint, cellRangeAddressList);
+            dataValidation.setErrorStyle(DataValidation.ErrorStyle.STOP);
+            // 输入无效值时是否显示错误框
+            dataValidation.setShowErrorBox(true);
+            // 验证输入数据是否真确
+            dataValidation.setSuppressDropDownArrow(true);
+            // 设置无效值时 是否弹出提示框
+            dataValidation.setShowPromptBox(true);
+            // 设置无效值时的提示框内容 createErrorBox
+            dataValidation.createErrorBox("提示", "请输入正整数！！！");
+            dataValidation.createPromptBox("提示", "请输入正整数");
+            writeSheetHolder.getSheet().addValidationData(dataValidation);
+        });
+
+    }
+}
+```
+#### 自定义单个下拉生成的SheetWriteHandler
+``` bash
+/**
+ * @author rentie
+ * @date 2023/6/12 13:50
+ * @desc 设置单元格下拉
+ */
+public class DataSelectSheetWriteHandler implements SheetWriteHandler {
+
+    /**
+     * Map<下拉框列索引, 下拉对应的字典数据> map
+     */
+    private Map<Integer, List<String>> selectedMap;
+
+    public DataSelectSheetWriteHandler(final Map<Integer, List<String>> selectedMap) {
+        this.selectedMap = selectedMap;
+    }
+
+    public DataSelectSheetWriteHandler() {}
+
+    @Override
+    public void afterSheetCreate(final WriteWorkbookHolder writeWorkbookHolder,
+        final WriteSheetHolder writeSheetHolder) {
+        this.selectedMap.forEach((index, dictItemTexts) -> {
+            // 设置下拉单元格的首行 末行 首列 末列 65536为excel最大行数
+            ExcelUtils.addSelectValidationToSheet(writeSheetHolder, dictItemTexts, index, 1, 65536);
+        });
+    }
+}
+```
+#### 自定义级联下拉生成的SheetWriteHandler
+``` bash
+/**
+ * @author rentie
+ * @date 2023/6/12 15:25
+ * @desc 设置单元格级联下拉 使用excel的OFFSET结合MATCH的公式，可以解决名称管理器无法使用特殊字符的问题
+ */
+@SuppressWarnings({"rawtypes", "unchecked"})
+public class DataCascadeSelectSheetWriteHandler implements SheetWriteHandler {
+
+    /**
+     * Map<下拉框列索引, 下拉对应的字典数据> map
+     */
+    private Map<Integer, ExcelSelectDataColumn> selectedMap;
+
+    public DataCascadeSelectSheetWriteHandler(final Map<Integer, ExcelSelectDataColumn> selectedMap) {
+        this.selectedMap = selectedMap;
+    }
+
+    public DataCascadeSelectSheetWriteHandler() {}
+
+    @Override
+    public void afterSheetCreate(final WriteWorkbookHolder writeWorkbookHolder,
+        final WriteSheetHolder writeSheetHolder) {
+
+        this.selectedMap.forEach((colIndex, model) -> {
+            if (model.getParentColumnIndex() >= 0) {
+                // 级联下拉生成
+                ExcelUtils.addCascadeValidationToSheet(writeWorkbookHolder, writeSheetHolder,
+                    (Map<String, List<String>>)model.getSource(), model.getLevel(), model.getParentColumnIndex(),
+                    colIndex, model.getFirstRow(), model.getLastRow());
+            } else {
+                // 单个下拉
+                ExcelUtils.addSelectValidationToSheet(writeSheetHolder, (List<String>)model.getSource(), colIndex,
+                    model.getFirstRow(), model.getLastRow());
+            }
+        });
+    }
+}
+```
+
+#### 注解在DTO中使用例子
+``` bash
+@Setter
+@Getter
+@ToString
+@EqualsAndHashCode
+public class DataDTO implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    /** 级联一级 */
+    @ExcelProperty(value = "级联一级", index = 0)
+    @ApiModelProperty(value = "级联一级")
+    @ExcelCascadeDictAnnotation(dictCode = "achievement_category")
+    private String deptName;
+
+    /** 级联二级 */
+    @ExcelProperty(value = "级联二级", index = 1)
+    @ApiModelProperty(value = "级联二级")
+    @ExcelCascadeDictAnnotation(dictCode = "achievement_category", parentColumnIndex = 0,level = 2)
+    private String operName;
+    
+     /** 级联三级 */
+    @ExcelProperty(value = "级联三级", index = 2)
+    @ApiModelProperty(value = "级联三级")
+    @ExcelCascadeDictAnnotation(dictCode = "achievement_category", parentColumnIndex = 1,level = 3)
+    private String operName;
+
+    /** 单个下拉 */
+    @ExcelDictAnnotation("computer_type")
+    @ExcelProperty(value = "单个下拉", index = 3, converter = DictConverter.class)
+    @ApiModelProperty(value = "单个下拉", notes = "computer_type")
+    private String computerType;
+}
+```
 #### 模版生成工具类
 <font color=red>获取字典数据部分的代码需要根据项目实际情况做调整</font>
 ``` bash
@@ -291,190 +474,7 @@ public class EasyExcelUtils {
 }
 
 ```
-#### 自定义整型、日期格式生成的SheetWriteHandler
-``` bash
-/**
- * @author rentie
- * @date 2023/6/8 15:25
- * @desc 日期、整型类型设置单元格格式
- */
-public class DataFormatSheetWriteHandler implements SheetWriteHandler {
-
-    /**
-     * 日期类型单元格的ColumnIndex, ColumnIndex 从0开始计数
-     */
-    private List<Integer> dateColumnIndexList;
-
-    /**
-     * 整型类型单元格的ColumnIndex, ColumnIndex 从0开始计数
-     */
-    private List<Integer> intColumnIndexList;
-
-    public DataFormatSheetWriteHandler(final List<Integer> dateColumnIndexList,
-        final List<Integer> intColumnIndexList) {
-        this.dateColumnIndexList = dateColumnIndexList;
-        this.intColumnIndexList = intColumnIndexList;
-    }
-
-    public DataFormatSheetWriteHandler() {}
-
-    @Override
-    public void afterSheetCreate(final WriteWorkbookHolder writeWorkbookHolder,
-        final WriteSheetHolder writeSheetHolder) {
-
-        // 创建日期数据规则
-        this.dateColumnIndexList.forEach(index -> {
-            // 检查的区域
-            final CellRangeAddressList cellRangeAddressList = new CellRangeAddressList(1, 65536, index, index);
-            final DataValidationHelper helper = writeSheetHolder.getSheet().getDataValidationHelper();
-            // DVConstraint constrain1 = DVConstraint.CreateDateConstraint(条件,"最小时间","最大时间","时间格式"); //这是检查时间的方法
-            final DataValidationConstraint constraint = helper.createDateConstraint(
-                DataValidationConstraint.OperatorType.BETWEEN, "Date(1900, 1, 1)", "Date(2099, 12, 31)", "yyyy-MM-dd");
-            final DataValidation dataValidation = helper.createValidation(constraint, cellRangeAddressList);
-            dataValidation.setErrorStyle(DataValidation.ErrorStyle.STOP);
-            // 输入无效值时是否显示错误框
-            dataValidation.setShowErrorBox(true);
-            // 验证输入数据是否真确
-            dataValidation.setSuppressDropDownArrow(true);
-            // 设置无效值时 是否弹出提示框
-            dataValidation.setShowPromptBox(true);
-            // 设置无效值时的提示框内容 createErrorBox
-            dataValidation.createErrorBox("提示", "请输入[yyyy-MM-dd]格式日期！！！");
-            dataValidation.createPromptBox("提示", "yyyy-MM-dd 格式日期");
-            writeSheetHolder.getSheet().addValidationData(dataValidation);
-        });
-
-        // 创建整型数据规则
-        this.intColumnIndexList.forEach(index -> {
-            // 检查的区域
-            final CellRangeAddressList cellRangeAddressList = new CellRangeAddressList(1, 65536, index, index);
-            final DataValidationHelper helper = writeSheetHolder.getSheet().getDataValidationHelper();
-            final DataValidationConstraint constraint = helper.createIntegerConstraint(
-                DataValidationConstraint.OperatorType.BETWEEN, "0", String.valueOf(Integer.MAX_VALUE));
-            final DataValidation dataValidation = helper.createValidation(constraint, cellRangeAddressList);
-            dataValidation.setErrorStyle(DataValidation.ErrorStyle.STOP);
-            // 输入无效值时是否显示错误框
-            dataValidation.setShowErrorBox(true);
-            // 验证输入数据是否真确
-            dataValidation.setSuppressDropDownArrow(true);
-            // 设置无效值时 是否弹出提示框
-            dataValidation.setShowPromptBox(true);
-            // 设置无效值时的提示框内容 createErrorBox
-            dataValidation.createErrorBox("提示", "请输入正整数！！！");
-            dataValidation.createPromptBox("提示", "请输入正整数");
-            writeSheetHolder.getSheet().addValidationData(dataValidation);
-        });
-
-    }
-}
-```
-#### 自定义单个下拉生成的SheetWriteHandler
-``` bash
-/**
- * @author rentie
- * @date 2023/6/12 13:50
- * @desc 设置单元格下拉
- */
-public class DataSelectSheetWriteHandler implements SheetWriteHandler {
-
-    /**
-     * Map<下拉框列索引, 下拉对应的字典数据> map
-     */
-    private Map<Integer, List<String>> selectedMap;
-
-    public DataSelectSheetWriteHandler(final Map<Integer, List<String>> selectedMap) {
-        this.selectedMap = selectedMap;
-    }
-
-    public DataSelectSheetWriteHandler() {}
-
-    @Override
-    public void afterSheetCreate(final WriteWorkbookHolder writeWorkbookHolder,
-        final WriteSheetHolder writeSheetHolder) {
-        this.selectedMap.forEach((index, dictItemTexts) -> {
-            // 设置下拉单元格的首行 末行 首列 末列 65536为excel最大行数
-            ExcelUtils.addSelectValidationToSheet(writeSheetHolder, dictItemTexts, index, 1, 65536);
-        });
-    }
-}
-```
-#### 自定义级联下拉生成的SheetWriteHandler
-``` bash
-/**
- * @author rentie
- * @date 2023/6/12 15:25
- * @desc 设置单元格级联下拉 使用excel的OFFSET结合MATCH的公式，可以解决名称管理器无法使用特殊字符的问题
- */
-@SuppressWarnings({"rawtypes", "unchecked"})
-public class DataCascadeSelectSheetWriteHandler implements SheetWriteHandler {
-
-    /**
-     * Map<下拉框列索引, 下拉对应的字典数据> map
-     */
-    private Map<Integer, ExcelSelectDataColumn> selectedMap;
-
-    public DataCascadeSelectSheetWriteHandler(final Map<Integer, ExcelSelectDataColumn> selectedMap) {
-        this.selectedMap = selectedMap;
-    }
-
-    public DataCascadeSelectSheetWriteHandler() {}
-
-    @Override
-    public void afterSheetCreate(final WriteWorkbookHolder writeWorkbookHolder,
-        final WriteSheetHolder writeSheetHolder) {
-
-        this.selectedMap.forEach((colIndex, model) -> {
-            if (model.getParentColumnIndex() >= 0) {
-                // 级联下拉生成
-                ExcelUtils.addCascadeValidationToSheet(writeWorkbookHolder, writeSheetHolder,
-                    (Map<String, List<String>>)model.getSource(), model.getLevel(), model.getParentColumnIndex(),
-                    colIndex, model.getFirstRow(), model.getLastRow());
-            } else {
-                // 单个下拉
-                ExcelUtils.addSelectValidationToSheet(writeSheetHolder, (List<String>)model.getSource(), colIndex,
-                    model.getFirstRow(), model.getLastRow());
-            }
-        });
-    }
-}
-```
-
-#### 注解在DTO中使用例子
-``` bash
-@Setter
-@Getter
-@ToString
-@EqualsAndHashCode
-public class DataDTO implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
-    /** 级联一级 */
-    @ExcelProperty(value = "级联一级", index = 0)
-    @ApiModelProperty(value = "级联一级")
-    @ExcelCascadeDictAnnotation(dictCode = "achievement_category")
-    private String deptName;
-
-    /** 级联二级 */
-    @ExcelProperty(value = "级联二级", index = 1)
-    @ApiModelProperty(value = "级联二级")
-    @ExcelCascadeDictAnnotation(dictCode = "achievement_category", parentColumnIndex = 0,level = 2)
-    private String operName;
-    
-     /** 级联三级 */
-    @ExcelProperty(value = "级联三级", index = 2)
-    @ApiModelProperty(value = "级联三级")
-    @ExcelCascadeDictAnnotation(dictCode = "achievement_category", parentColumnIndex = 1,level = 3)
-    private String operName;
-
-    /** 单个下拉 */
-    @ExcelDictAnnotation("computer_type")
-    @ExcelProperty(value = "单个下拉", index = 3, converter = DictConverter.class)
-    @ApiModelProperty(value = "单个下拉", notes = "computer_type")
-    private String computerType;
-}
-```
-#### 模版生成方法调用
+#### 模版生成工具的调用
 ``` bash
 public void download(final HttpServletResponse response) throws IOException {
         response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
