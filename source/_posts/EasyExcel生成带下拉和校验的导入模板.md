@@ -66,12 +66,12 @@ public @interface ExcelCascadeDictAnnotation {
 }
 
 ```
-#### 自定义整型、日期格式生成的SheetWriteHandler
+#### 自定义日期、整型格式数据规则生成的SheetWriteHandler
 ``` bash
 /**
  * @author rentie
  * @date 2023/6/8 15:25
- * @desc 日期、整型类型设置单元格格式
+ * @desc 日期、整数类型设置单元格格式
  */
 public class DataFormatSheetWriteHandler implements SheetWriteHandler {
 
@@ -99,51 +99,18 @@ public class DataFormatSheetWriteHandler implements SheetWriteHandler {
 
         // 创建日期数据规则
         this.dateColumnIndexList.forEach(index -> {
-            // 检查的区域
-            final CellRangeAddressList cellRangeAddressList = new CellRangeAddressList(1, 65536, index, index);
-            final DataValidationHelper helper = writeSheetHolder.getSheet().getDataValidationHelper();
-            // DVConstraint constrain1 = DVConstraint.CreateDateConstraint(条件,"最小时间","最大时间","时间格式"); //这是检查时间的方法
-            final DataValidationConstraint constraint = helper.createDateConstraint(
-                DataValidationConstraint.OperatorType.BETWEEN, "Date(1900, 1, 1)", "Date(2099, 12, 31)", "yyyy-MM-dd");
-            final DataValidation dataValidation = helper.createValidation(constraint, cellRangeAddressList);
-            dataValidation.setErrorStyle(DataValidation.ErrorStyle.STOP);
-            // 输入无效值时是否显示错误框
-            dataValidation.setShowErrorBox(true);
-            // 验证输入数据是否真确
-            dataValidation.setSuppressDropDownArrow(true);
-            // 设置无效值时 是否弹出提示框
-            dataValidation.setShowPromptBox(true);
-            // 设置无效值时的提示框内容 createErrorBox
-            dataValidation.createErrorBox("提示", "请输入[yyyy-MM-dd]格式日期！！！");
-            dataValidation.createPromptBox("提示", "yyyy-MM-dd 格式日期");
-            writeSheetHolder.getSheet().addValidationData(dataValidation);
+            ExcelUtils.addDateValidationToSheet(writeSheetHolder, index, ExcelUtils.START_ROW, ExcelUtils.MAX_END_ROW);
         });
 
         // 创建整型数据规则
         this.intColumnIndexList.forEach(index -> {
-            // 检查的区域
-            final CellRangeAddressList cellRangeAddressList = new CellRangeAddressList(1, 65536, index, index);
-            final DataValidationHelper helper = writeSheetHolder.getSheet().getDataValidationHelper();
-            final DataValidationConstraint constraint = helper.createIntegerConstraint(
-                DataValidationConstraint.OperatorType.BETWEEN, "0", String.valueOf(Integer.MAX_VALUE));
-            final DataValidation dataValidation = helper.createValidation(constraint, cellRangeAddressList);
-            dataValidation.setErrorStyle(DataValidation.ErrorStyle.STOP);
-            // 输入无效值时是否显示错误框
-            dataValidation.setShowErrorBox(true);
-            // 验证输入数据是否真确
-            dataValidation.setSuppressDropDownArrow(true);
-            // 设置无效值时 是否弹出提示框
-            dataValidation.setShowPromptBox(true);
-            // 设置无效值时的提示框内容 createErrorBox
-            dataValidation.createErrorBox("提示", "请输入正整数！！！");
-            dataValidation.createPromptBox("提示", "请输入正整数");
-            writeSheetHolder.getSheet().addValidationData(dataValidation);
+            ExcelUtils.addIntValidationToSheet(writeSheetHolder, index, ExcelUtils.START_ROW, ExcelUtils.MAX_END_ROW);
         });
 
     }
 }
 ```
-#### 自定义单个下拉生成的SheetWriteHandler
+#### 自定义单个下拉数据规则生成的SheetWriteHandler
 ``` bash
 /**
  * @author rentie
@@ -168,12 +135,12 @@ public class DataSelectSheetWriteHandler implements SheetWriteHandler {
         final WriteSheetHolder writeSheetHolder) {
         this.selectedMap.forEach((index, dictItemTexts) -> {
             // 设置下拉单元格的首行 末行 首列 末列 65536为excel最大行数
-            ExcelUtils.addSelectValidationToSheet(writeSheetHolder, dictItemTexts, index, 1, 65536);
+            ExcelUtils.addSelectValidationToSheet(writeSheetHolder, dictItemTexts, index,ExcelUtils.START_ROW,ExcelUtils.MAX_END_ROW);
         });
     }
 }
 ```
-#### 自定义级联下拉生成的SheetWriteHandler
+#### 自定义级联下拉数据规则生成的SheetWriteHandler
 ``` bash
 /**
  * @author rentie
@@ -213,6 +180,364 @@ public class DataCascadeSelectSheetWriteHandler implements SheetWriteHandler {
     }
 }
 ```
+#### Excel模板数据规则处理工具类
+``` bash
+/**
+ * @author rentie
+ * @date 2023/6/12 15:16
+ * @desc excel导出工具类
+ */
+public class ExcelUtils {
+
+    /**
+     * 默认规则开始行
+     */
+    public static final int START_ROW = 1;
+    /**
+     * 默认规则结束行 65536是Excel的最大行数
+     */
+    public static final int MAX_END_ROW = 65536;
+
+    /**
+     * 根据参数设置自定义导出列
+     * 
+     * @param includeColumnFiledNames
+     *            导出包含的字段名列表
+     * @param excelBuilder
+     *            ExcelWriterBuilder
+     * @return
+     */
+    public static ExcelWriterBuilder includeColumnFiledNames(final Set<String> includeColumnFiledNames,
+        ExcelWriterBuilder excelBuilder) {
+        // 自动设置列宽
+        excelBuilder = excelBuilder.registerWriteHandler(new ExcelWidthStyleStrategy());
+        if (Objects.nonNull(includeColumnFiledNames) && includeColumnFiledNames.size() > 0) {
+            // 添加指定导出列设置参数
+            excelBuilder = excelBuilder.includeColumnFiledNames(includeColumnFiledNames);
+        }
+        return excelBuilder;
+    }
+
+    /**
+     * 级联下拉生成
+     * 
+     * @param workbookHolder
+     *            WriteWorkbookHolder对象
+     * @param sheetHolder
+     *            WriteSheetHolder对象
+     * @param options
+     *            下拉数据
+     * @param level
+     *            下拉层级
+     * @param parentCol
+     *            父级字段列下标
+     * @param selfCol
+     *            当前字段列下标
+     * @param startRow
+     *            数据规则开始层数
+     * @param endRow
+     *            数据规则结束层数
+     */
+    public static void addCascadeValidationToSheet(final WriteWorkbookHolder workbookHolder,
+        final WriteSheetHolder sheetHolder, final Map<String, List<String>> options, final int level,
+        final int parentCol, final int selfCol, final int startRow, final int endRow) {
+        final Workbook workbook = workbookHolder.getWorkbook();
+        final Sheet sheet = sheetHolder.getSheet();
+        // 生成新的sheet页保存下拉数据
+        final Sheet tmpSheet = createTmpSheet(workbook, "cascade_sheet" + selfCol + level);
+        // 数据sheet页的开始下标
+        final AtomicInteger startCol = new AtomicInteger(0);
+        for (final Map.Entry<String, List<String>> entry : options.entrySet()) {
+            // 父级选项值
+            final String parentValue = entry.getKey();
+            // 下级选项值
+            final List<String> children = entry.getValue();
+            if (CollUtil.isEmpty(children)) {
+                continue;
+            }
+            final int columnIndex = startCol.getAndIncrement();
+            // 将父级值添加添加到children的头部位置
+            children.add(0, parentValue);
+            // 在新的sheet页生成下拉数据，第一行是父级选项值，每一列第二行开始时下级选项值
+            createDropdownElement(tmpSheet, children, columnIndex);
+        }
+        // 新的sheet页中第一行，对应上级的选项信息
+        // cascade_sheet_1!$A$1:$C$1 表示上级选项信息
+        final int parentSize = options.size();
+        // 数据sheet页数据结束列名
+        final String endColumnName = calculateColumnName(parentSize);
+        // cascade_sheet_1!$A$1:$C$1 表示父信息;获取数据sheet页父级选项值公式
+        final String formulaForParentText = createFormulaForParentText(tmpSheet, endColumnName);
+        // cascade_sheet_1!$A$2:$A$100 获取数据sheet页下级选项值的公式
+        final String formulaForSubText = createFormulaForSubText(tmpSheet);
+
+        // 父级字段对应列名
+        String parentColumnName = calculateColumnName(parentCol + 1);
+        // 拼接父级字段值的单位格名：如 J2
+        parentColumnName = parentColumnName + "2";
+        // OFFSET公式拼接，使用OFFSET可以解决名称管理器无法使用特殊字符的问题，该公式会作用在除一级以外的下拉单元格
+        // 最终公式如：=OFFSET(cascade_sheet2!$A$1,1,MATCH(J3,cascade_sheet2!$A$1:$C$1,0)-1,COUNTA(OFFSET(cascade_sheet2!$A$2:$A$100,0,MATCH(J3,cascade_sheet2!$A$1:$C$1,0)-1)))
+        final String offsetFormula =
+            createOffsetFormula(tmpSheet, parentColumnName, formulaForParentText, formulaForSubText);
+        // 创建基于公式的下拉数据格式验证
+        createValidationByFormula(sheet, offsetFormula, selfCol, startRow, endRow);
+        // 隐藏下拉数据sheet页
+        hideSheet(workbook, tmpSheet);
+    }
+
+    /**
+     * 创建sheet页
+     * 
+     * @param workbook
+     *            Workbook对象
+     * @param sheetName
+     *            sheet页名称
+     * @return
+     */
+    private static Sheet createTmpSheet(final Workbook workbook, final String sheetName) {
+        return workbook.createSheet(sheetName);
+    }
+
+    /**
+     * 添加单个下拉数据规则
+     * 
+     * @param sheetHolder
+     *            sheetHolder对象
+     * @param options
+     *            下拉选项
+     * @param colIndex
+     *            当前列下标
+     * @param startRow
+     *            数据规则开始行
+     * @param endRow
+     *            数据规则结束行
+     */
+    public static void addSelectValidationToSheet(final WriteSheetHolder sheetHolder, final List<String> options,
+        final int colIndex, final int startRow, final int endRow) {
+        final Sheet sheet = sheetHolder.getSheet();
+        final DataValidationHelper helper = sheet.getDataValidationHelper();
+        if (CollUtil.isNotEmpty(options)) {
+            // 设置下拉单元格的首行 末行 首列 末列 65536为excel最大行数
+            final CellRangeAddressList rangeList = new CellRangeAddressList(startRow, endRow, colIndex, colIndex);
+            final DataValidationConstraint constraint =
+                helper.createExplicitListConstraint(options.toArray(new String[0]));
+            final DataValidation dataValidation = helper.createValidation(constraint, rangeList);
+            dataValidation.setErrorStyle(DataValidation.ErrorStyle.STOP);
+            dataValidation.setShowErrorBox(true);
+            dataValidation.setSuppressDropDownArrow(true);
+            dataValidation.setShowPromptBox(true);
+            dataValidation.createErrorBox("提示", "请选择下拉选项中的内容");
+            dataValidation.createPromptBox("提示", "请选择下拉选项中的内容");
+            sheet.addValidationData(dataValidation);
+        }
+    }
+
+    /**
+     * 添加日期数据规则
+     *
+     * @param sheetHolder
+     *            sheetHolder对象
+     * @param colIndex
+     *            当前列下标
+     * @param startRow
+     *            数据规则开始行
+     * @param endRow
+     *            数据规则结束行
+     */
+    public static void addDateValidationToSheet(final WriteSheetHolder sheetHolder, final int colIndex,
+        final int startRow, final int endRow) {
+        final Sheet sheet = sheetHolder.getSheet();
+        // 检查的区域
+        final CellRangeAddressList cellRangeAddressList =
+            new CellRangeAddressList(startRow, endRow, colIndex, colIndex);
+        final DataValidationHelper helper = sheet.getDataValidationHelper();
+
+        // 设置下拉单元格的首行 末行 首列 末列
+        final DataValidationConstraint constraint = helper.createDateConstraint(
+            DataValidationConstraint.OperatorType.BETWEEN, "Date(1900, 1, 1)", "Date(2099, 12, 31)", "yyyy-MM-dd");
+        final DataValidation dataValidation = helper.createValidation(constraint, cellRangeAddressList);
+        dataValidation.setErrorStyle(DataValidation.ErrorStyle.STOP);
+        // 输入无效值时是否显示错误框
+        dataValidation.setShowErrorBox(true);
+        // 验证输入数据是否真确
+        dataValidation.setSuppressDropDownArrow(true);
+        // 设置无效值时 是否弹出提示框
+        dataValidation.setShowPromptBox(true);
+        // 设置无效值时的提示框内容 createErrorBox
+        dataValidation.createErrorBox("提示", "请输入[yyyy-MM-dd]格式日期！！！");
+        dataValidation.createPromptBox("提示", "yyyy-MM-dd 格式日期");
+        sheet.addValidationData(dataValidation);
+
+    }
+
+    /**
+     * 添加整型数据规则
+     *
+     * @param sheetHolder
+     *            sheetHolder对象
+     * @param colIndex
+     *            当前列下标
+     * @param startRow
+     *            数据规则开始行
+     * @param endRow
+     *            数据规则结束行
+     */
+    public static void addIntValidationToSheet(final WriteSheetHolder sheetHolder, final int colIndex,
+        final int startRow, final int endRow) {
+        final Sheet sheet = sheetHolder.getSheet();
+        // 检查的区域
+        final CellRangeAddressList cellRangeAddressList =
+            new CellRangeAddressList(startRow, endRow, colIndex, colIndex);
+        final DataValidationHelper helper = sheet.getDataValidationHelper();
+
+        final DataValidationConstraint constraint = helper.createIntegerConstraint(
+            DataValidationConstraint.OperatorType.BETWEEN, "0", String.valueOf(Integer.MAX_VALUE));
+        final DataValidation dataValidation = helper.createValidation(constraint, cellRangeAddressList);
+        dataValidation.setErrorStyle(DataValidation.ErrorStyle.STOP);
+        // 输入无效值时是否显示错误框
+        dataValidation.setShowErrorBox(true);
+        // 验证输入数据是否真确
+        dataValidation.setSuppressDropDownArrow(true);
+        // 设置无效值时 是否弹出提示框
+        dataValidation.setShowPromptBox(true);
+        // 设置无效值时的提示框内容 createErrorBox
+        dataValidation.createErrorBox("提示", "请输入正整数！！！");
+        dataValidation.createPromptBox("提示", "请输入正整数");
+        sheet.addValidationData(dataValidation);
+    }
+
+    /**
+     * 在sheet页中创建一列数据
+     * 
+     * @param tmpSheet
+     *            sheet对象
+     * @param options
+     *            列数据值
+     * @param columnIndex
+     *            sheet页中的数据所在列数
+     */
+    private static void createDropdownElement(final Sheet tmpSheet, final List<String> options, final int columnIndex) {
+        int rowIndex = 0;
+        for (final String val : options) {
+            final int rIndex = rowIndex++;
+            final Row row = Optional.ofNullable(tmpSheet.getRow(rIndex)).orElseGet(() -> {
+                try {
+                    return tmpSheet.createRow(rIndex);
+                } catch (final Exception e) {
+                    e.printStackTrace();
+                    throw new RuntimeException(e);
+                }
+
+            });
+            final Cell cell = row.createCell(columnIndex);
+            cell.setCellValue(val);
+        }
+    }
+
+    /**
+     * 创建基于公式的下拉数据格式验证
+     * 
+     * @param formula
+     *            公式字符串
+     * @param selfCol
+     *            当前列下标
+     * @param startRow
+     *            开始行
+     * @param endRow
+     *            结束行
+     */
+    private static void createValidationByFormula(final Sheet sheet, final String formula, final int selfCol,
+        final int startRow, final int endRow) {
+        final DataValidationHelper helper = sheet.getDataValidationHelper();
+        final DataValidationConstraint constraint = helper.createFormulaListConstraint(formula);
+        final CellRangeAddressList addressList = new CellRangeAddressList(startRow, endRow, selfCol, selfCol);
+        final DataValidation validation = helper.createValidation(constraint, addressList);
+        validation.setErrorStyle(DataValidation.ErrorStyle.STOP);
+        validation.setShowErrorBox(true);
+        validation.setSuppressDropDownArrow(true);
+        validation.createErrorBox("提示", "请选择下拉选项中的内容");
+        sheet.addValidationData(validation);
+    }
+
+    /**
+     * offset公式拼接
+     *
+     * @param tmpSheet
+     *            数据sheet页
+     * @param parentColumnName
+     *            父级列名
+     * @param formulaForParentText
+     *            数据sheet页父级数据公式
+     * @param formulaForSubText
+     *            数据sheet页待选项数据公式
+     * @return offset公式
+     */
+    private static String createOffsetFormula(final Sheet tmpSheet, final String parentColumnName,
+        final String formulaForParentText, final String formulaForSubText) {
+        final String format = "=OFFSET(%s!$A$1,1,MATCH(%s,%s,0)-1,COUNTA(OFFSET(%s,0,MATCH(%s,%s,0)-1)))";
+        return String.format(format, tmpSheet.getSheetName(), parentColumnName, formulaForParentText, formulaForSubText,
+            parentColumnName, formulaForParentText);
+    }
+
+    /**
+     * 拼接获取sheet页中父级待选项的公式
+     * 
+     * @param tmpSheet
+     *            sheet对象
+     * @param endColumnName
+     *            结束列名
+     * @return
+     */
+    private static String createFormulaForParentText(final Sheet tmpSheet, final String endColumnName) {
+        final String format = "%s!$%s$%s:$%s$%s";
+        return String.format(format, tmpSheet.getSheetName(), "A", "1", endColumnName, "1");
+    }
+
+    /**
+     * 拼接获取sheet页中下级选项的公式
+     * 
+     * @param tmpSheet
+     *            sheet对象
+     * @return
+     */
+    private static String createFormulaForSubText(final Sheet tmpSheet) {
+        final String format = "%s!$%s$%s:$%s$%s";
+        return String.format(format, tmpSheet.getSheetName(), "A", "2", "A", "500");
+    }
+
+    /**
+     * 隐藏sheet页
+     * 
+     * @param workbook
+     *            workbook对象
+     * @param sheet
+     *            Sheet对象
+     */
+    private static void hideSheet(final Workbook workbook, final Sheet sheet) {
+        final int sheetIndex = workbook.getSheetIndex(sheet);
+        if (sheetIndex > -1) {
+            workbook.setSheetHidden(sheetIndex, true);
+        }
+    }
+
+    /**
+     * 根据字段下标获取excel对应的列名称 如：A B C
+     * 
+     * @param actualColumn
+     * @return
+     */
+    private static String calculateColumnName(final int actualColumn) {
+        final int alphabeticalCount = 26;
+        if (actualColumn > alphabeticalCount) {
+            final char index = (char)((int)'A' + (actualColumn / alphabeticalCount - 1));
+            final char subIndex = (char)((int)'A' + (actualColumn % alphabeticalCount - 1));
+            return index + String.valueOf(subIndex);
+        } else {
+            return String.valueOf((char)((int)'A' + (actualColumn == 0 ? 1 : actualColumn) - 1));
+        }
+    }
+}
+```
 
 #### 注解在DTO中使用例子
 ``` bash
@@ -249,7 +574,7 @@ public class DataDTO implements Serializable {
     private String computerType;
 }
 ```
-#### 模版生成工具类
+#### DTO处理、Excel模板生成调用工具类
 <font color=red>获取字典数据部分的代码需要根据项目实际情况做调整</font>
 ``` bash
 /**
