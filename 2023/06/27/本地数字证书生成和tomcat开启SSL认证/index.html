@@ -6,7 +6,7 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | MarioのBLOG</title>
+  <title>本地数字证书生成和tomcat开启SSL认证 | MarioのBLOG</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
   <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
@@ -23,13 +23,15 @@
         border-left-color: #3CC4C4;    /*左边框颜色*/
     }
   </style>
-  <meta name="description" content="一个作为备忘录的博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="MarioのBLOG">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="记录一下本地数字证书生成的命令及过程，以及tomcat如何开启SSL认证">
+<meta property="og:type" content="article">
+<meta property="og:title" content="本地数字证书生成和tomcat开启SSL认证">
+<meta property="og:url" content="http://yoursite.com/2023/06/27/%E6%9C%AC%E5%9C%B0%E6%95%B0%E5%AD%97%E8%AF%81%E4%B9%A6%E7%94%9F%E6%88%90%E5%92%8Ctomcat%E5%BC%80%E5%90%AFSSL%E8%AE%A4%E8%AF%81/index.html">
 <meta property="og:site_name" content="MarioのBLOG">
-<meta property="og:description" content="一个作为备忘录的博客">
+<meta property="og:description" content="记录一下本地数字证书生成的命令及过程，以及tomcat如何开启SSL认证">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-06-27T05:46:14.000Z">
+<meta property="article:modified_time" content="2023-06-27T06:07:20.335Z">
 <meta property="article:author" content="Mario">
 <meta name="twitter:card" content="summary">
   
@@ -169,264 +171,173 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-本地数字证书生成和tomcat开启SSL认证" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      本地数字证书生成和tomcat开启SSL认证
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2023" class="archive-year">2023</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/06/27/%E6%9C%AC%E5%9C%B0%E6%95%B0%E5%AD%97%E8%AF%81%E4%B9%A6%E7%94%9F%E6%88%90%E5%92%8Ctomcat%E5%BC%80%E5%90%AFSSL%E8%AE%A4%E8%AF%81/" class="archive-article-date">
+
+        
+        <a href="/2023/06/27/%E6%9C%AC%E5%9C%B0%E6%95%B0%E5%AD%97%E8%AF%81%E4%B9%A6%E7%94%9F%E6%88%90%E5%92%8Ctomcat%E5%BC%80%E5%90%AFSSL%E8%AE%A4%E8%AF%81/" class="archive-article-date">
   	<time datetime="2023-06-27T05:46:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-06-27</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/06/27/%E6%9C%AC%E5%9C%B0%E6%95%B0%E5%AD%97%E8%AF%81%E4%B9%A6%E7%94%9F%E6%88%90%E5%92%8Ctomcat%E5%BC%80%E5%90%AFSSL%E8%AE%A4%E8%AF%81/">本地数字证书生成和tomcat开启SSL认证</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
+        
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/06/26/EasyExcel%E7%94%9F%E6%88%90%E5%B8%A6%E4%B8%8B%E6%8B%89%E5%92%8C%E6%A0%A1%E9%AA%8C%E7%9A%84%E5%AF%BC%E5%85%A5%E6%A8%A1%E6%9D%BF/" class="archive-article-date">
-  	<time datetime="2023-06-26T09:09:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-06-26</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/06/26/EasyExcel%E7%94%9F%E6%88%90%E5%B8%A6%E4%B8%8B%E6%8B%89%E5%92%8C%E6%A0%A1%E9%AA%8C%E7%9A%84%E5%AF%BC%E5%85%A5%E6%A8%A1%E6%9D%BF/">EasyExcel生成带下拉和校验的导入模板</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
+    <div class="article-entry" itemprop="articleBody">
       
-        </div></section>
+        <p>记录一下本地数字证书生成的命令及过程，以及tomcat如何开启SSL认证</p>
+<a id="more"></a>
+<h4 id="本地数字证书生成（jks格式证书生成）"><a href="#本地数字证书生成（jks格式证书生成）" class="headerlink" title="本地数字证书生成（jks格式证书生成）"></a>本地数字证书生成（jks格式证书生成）</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">0、进入java中jdk\jre\bin目录</span><br><span class="line"></span><br><span class="line">1、生成服务器证书（D:\apache-tomcat-8.5.56-https\conf为本地tomcat配置文件目录）</span><br><span class="line">keytool -genkey -<span class="built_in">alias</span> server -keypass 123456 -storepass 123456 -keyalg RSA -keystore D:\apache-tomcat-8.5.56-https\conf\server.keystore -validity 36500 </span><br><span class="line"></span><br><span class="line">1、生成客户端证书jks文件</span><br><span class="line">keytool -genkeypair -<span class="built_in">alias</span> client -keyalg RSA -validity 36500 -keypass 123456 -storepass 123456 -keystore D:\apache-tomcat-8.5.56-https\conf\client.jks</span><br><span class="line"></span><br><span class="line">2、生成p12文件</span><br><span class="line">keytool -genkey -v -<span class="built_in">alias</span> mykey -keyalg RSA -storetype PKCS12 -keystore D:\apache-tomcat-8.5.56-https\conf\mykey.p12</span><br><span class="line"></span><br><span class="line">3、让服务器信任客户端证书</span><br><span class="line">3.1</span><br><span class="line">P12生成cer</span><br><span class="line">keytool -<span class="built_in">export</span> -<span class="built_in">alias</span> mykey -keystore D:\apache-tomcat-8.5.56-https\conf\mykey.p12 -storetype PKCS12 -storepass 123456 -rfc -file D:\apache-tomcat-8.5.56-https\conf\mykey.cer</span><br><span class="line"></span><br><span class="line">jks生成cer</span><br><span class="line">keytool -<span class="built_in">export</span> -<span class="built_in">alias</span> client -file D:\apache-tomcat-8.5.56-https\conf\client.cer -storepass 123456 -keystore D:\apache-tomcat-8.5.56-https\conf\client.jks</span><br><span class="line"></span><br><span class="line">3.2 将证书导入到服务器证书库</span><br><span class="line">P12转换的cer导入到server库中</span><br><span class="line">keytool -import -v -file D:\apache-tomcat-8.5.56-https\conf\mykey.cer -keystore D:\apache-tomcat-8.5.56-https\conf\server.keystore</span><br><span class="line"></span><br><span class="line">将jks转换的cer导入到server库中</span><br><span class="line">keytool -import -v -<span class="built_in">alias</span> client -file D:\apache-tomcat-8.5.56-https\conf\client.cer -keystore D:\apache-tomcat-8.5.56-https\conf\server.keystore -storepass 123456</span><br><span class="line"></span><br><span class="line">4、双向验证</span><br><span class="line">导出服务器证书为cer</span><br><span class="line">keytool -<span class="built_in">export</span> -<span class="built_in">alias</span> server -keystore D:\apache-tomcat-8.5.56-https\conf\server.keystore -storepass 123456 -file D:\apache-tomcat-8.5.56-https\conf\server.cer</span><br><span class="line"></span><br><span class="line">5、双击安装mykey.p12导入客户端证书</span><br><span class="line"></span><br><span class="line">6、导入服务器公钥证书（server.cer）,双击安装server.cer,将证书安装本地，选择目录“受信任的根证书颁发机构”</span><br></pre></td></tr></table></figure>
+<h4 id="tomcat开启SSL认证"><a href="#tomcat开启SSL认证" class="headerlink" title="tomcat开启SSL认证"></a>tomcat开启SSL认证</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">修改tomcat配置 tomcat\conf\server.xml，找到注释的https配置位置，修改为如下内容，证书生成时就放在和配置文件同一目录下，证书密码123456，在生成时设置的，具体配置含义可自行百度</span><br><span class="line">      &lt;Connector port=<span class="string">"8443"</span> protocol=<span class="string">"org.apache.coyote.http11.Http11NioProtocol"</span></span><br><span class="line">                 maxHttpHeaderSize=<span class="string">"8192"</span></span><br><span class="line">                 maxThreads=<span class="string">"150"</span></span><br><span class="line">                 minSpareThreads=<span class="string">"25"</span> </span><br><span class="line">                 maxSpareThreads=<span class="string">"75"</span></span><br><span class="line">                 enableLookups=<span class="string">"false"</span> </span><br><span class="line">                 disableUploadTimeout=<span class="string">"true"</span></span><br><span class="line">                 acceptCount=<span class="string">"100"</span> </span><br><span class="line">                 SSLEnabled=<span class="string">"true"</span> </span><br><span class="line">                 scheme=<span class="string">"https"</span> </span><br><span class="line">                 secure=<span class="string">"true"</span> </span><br><span class="line">                 clientAuth=<span class="string">"true"</span> </span><br><span class="line">                 sslProtocol=<span class="string">"TLS"</span> </span><br><span class="line">                 keystoreType=<span class="string">"JKS"</span></span><br><span class="line">                 keystoreFile=<span class="string">"conf/server.keystore"</span></span><br><span class="line">                 keystorePass=<span class="string">"123456"</span></span><br><span class="line">                 truststoreFile=<span class="string">"conf/server.keystore"</span></span><br><span class="line">                 truststorePass=<span class="string">"123456"</span></span><br><span class="line">                 URIEncoding=<span class="string">"GBK"</span>/&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="访问及证书获取"><a href="#访问及证书获取" class="headerlink" title="访问及证书获取"></a>访问及证书获取</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1、浏览器访问：tomcat启动后访问8443端口就会要求证书双向验证通过才能访问</span><br><span class="line">2、程序代码获取证书信息，本地安装证书后，tomcat配置keystoreType=<span class="string">"JKS"</span>时，每次请求证书会在request对象中，获取证书的方式为：</span><br><span class="line">X509Certificate[] certs = (X509Certificate[]) request.getAttribute(<span class="string">"javax.servlet.request.X509Certificate"</span>);</span><br><span class="line">获取证书后可以对特定证书进行解析，做特殊业务逻辑处理</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/01/21/JAVA%E6%A0%91%E5%9E%8B%E7%BB%93%E6%9E%84%E5%AF%BC%E5%87%BAexcel%EF%BC%8C%E5%B9%B6%E5%90%88%E5%B9%B6%E5%8D%95%E5%85%83%E6%A0%BC/" class="archive-article-date">
-  	<time datetime="2021-01-21T09:47:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/01/21/JAVA%E6%A0%91%E5%9E%8B%E7%BB%93%E6%9E%84%E5%AF%BC%E5%87%BAexcel%EF%BC%8C%E5%B9%B6%E5%90%88%E5%B9%B6%E5%8D%95%E5%85%83%E6%A0%BC/">JAVA树型结构导出excel，并合并单元格</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/01/07/Oracle%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AF%BC%E5%87%BA%E4%B8%8E%E5%AF%BC%E5%85%A5/" class="archive-article-date">
-  	<time datetime="2021-01-07T07:43:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/01/07/Oracle%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AF%BC%E5%87%BA%E4%B8%8E%E5%AF%BC%E5%85%A5/">Oracle数据库导出与导入</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
       
-        </div></section>
+
       
+
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/12/10/SpringBoot2-X-Prometheus-Pushateway-Grafana%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9B%91%E6%8E%A7%E6%95%B0%E6%8D%AE/" class="archive-article-date">
-  	<time datetime="2020-12-10T08:18:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/12/10/SpringBoot2-X-Prometheus-Pushateway-Grafana%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9B%91%E6%8E%A7%E6%95%B0%E6%8D%AE/">SpringBoot2.X+Prometheus+Pushateway+Grafana实现自定义监控数据</a>
-    </h1>
-  
+      </div>
+    </span>
+  </div>
+</div>
 
-        <div class="article-info info-on-right">
-          
-          
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2023/06/27/%E6%9C%AC%E5%9C%B0%E6%95%B0%E5%AD%97%E8%AF%81%E4%B9%A6%E7%94%9F%E6%88%90%E5%92%8Ctomcat%E5%BC%80%E5%90%AFSSL%E8%AE%A4%E8%AF%81/" alt="微信分享二维码">
+    </div>
+</div>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/09/11/RabbitMQ%E6%95%99%E7%A8%8B-1/" class="archive-article-date">
-  	<time datetime="2020-09-11T01:31:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-11</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2023/06/26/EasyExcel%E7%94%9F%E6%88%90%E5%B8%A6%E4%B8%8B%E6%8B%89%E5%92%8C%E6%A0%A1%E9%AA%8C%E7%9A%84%E5%AF%BC%E5%85%A5%E6%A8%A1%E6%9D%BF/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">EasyExcel生成带下拉和校验的导入模板</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/09/11/RabbitMQ%E6%95%99%E7%A8%8B-1/">RabbitMQ教程</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">mq</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/队列//" class="article-tag-list-link color3">队列</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#本地数字证书生成（jks格式证书生成）"><span class="toc-number">1.</span> <span class="toc-text">本地数字证书生成（jks格式证书生成）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#tomcat开启SSL认证"><span class="toc-number">2.</span> <span class="toc-text">tomcat开启SSL认证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#访问及证书获取"><span class="toc-number">3.</span> <span class="toc-text">访问及证书获取</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/06/20/hello-world/" class="archive-article-date">
-  	<time datetime="2020-06-20T02:47:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-20</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/06/20/hello-world/">Hexo 更换电脑重新部署，更新博客</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+
+  
 
 
           </div>
@@ -453,8 +364,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
