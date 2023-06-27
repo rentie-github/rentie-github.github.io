@@ -180,6 +180,25 @@ public class DataCascadeSelectSheetWriteHandler implements SheetWriteHandler {
     }
 }
 ```
+#### 自定义Excel设置列宽策略类
+``` bash
+/**
+ * @author rentie
+ * @date 2023/6/8 13:57
+ * @desc excel设置列宽
+ */
+public class ExcelWidthStyleStrategy extends AbstractColumnWidthStyleStrategy {
+
+    @Override
+    protected void setColumnWidth(final WriteSheetHolder writeSheetHolder, final List<WriteCellData<?>> cellDataList,
+        final Cell cell, final Head head, final Integer relativeRowIndex, final Boolean isHead) {
+        // 简单设置
+        final Sheet sheet = writeSheetHolder.getSheet();
+        sheet.setColumnWidth(cell.getColumnIndex(), 5000);
+    }
+}
+```
+
 #### Excel模板数据规则处理工具类
 ``` bash
 /**
