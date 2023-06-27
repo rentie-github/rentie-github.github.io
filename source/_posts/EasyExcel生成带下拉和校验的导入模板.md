@@ -6,6 +6,15 @@ tags:
 EasyExcel结合业务系统的字典管理生成excel导入模版，模版中包含：<font color=red>日期、数字格式校验、下拉数据、级联下拉数据（目前最多3级，可调整添加）</font>
 
 <!--more-->
+#### maven引入EasyExcel依赖
+``` bash
+	<!-- easyexcel导入导出依赖 -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>easyexcel</artifactId>
+			<version>3.0.5</version>
+		</dependency>
+```
 #### 自定义注解ExcelDictAnnotation
 ``` bash
 /***
@@ -287,7 +296,7 @@ public class EasyExcelUtils {
 /**
  * @author rentie
  * @date 2023/6/8 15:25
- * @desc 日期类型设置单元格格式
+ * @desc 日期、整型类型设置单元格格式
  */
 public class DataFormatSheetWriteHandler implements SheetWriteHandler {
 
@@ -384,7 +393,7 @@ public class DataSelectSheetWriteHandler implements SheetWriteHandler {
         final WriteSheetHolder writeSheetHolder) {
         this.selectedMap.forEach((index, dictItemTexts) -> {
             // 设置下拉单元格的首行 末行 首列 末列 65536为excel最大行数
-            ExcelUtils.addSelectValidationToSheet(writeSheetHolder, dictItemTexts, index, 1, 6553);
+            ExcelUtils.addSelectValidationToSheet(writeSheetHolder, dictItemTexts, index, 1, 65536);
         });
     }
 }
