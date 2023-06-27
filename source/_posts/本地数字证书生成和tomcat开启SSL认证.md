@@ -13,39 +13,39 @@ tags:
 1、生成服务器证书（D:\apache-tomcat-8.5.56-https\conf为本地tomcat配置文件目录）
 keytool -genkey -alias server -keypass 123456 -storepass 123456 -keyalg RSA -keystore D:\apache-tomcat-8.5.56-https\conf\server.keystore -validity 36500 
 
-1、生成客户端证书jks文件
+2、生成客户端证书jks文件
 keytool -genkeypair -alias client -keyalg RSA -validity 36500 -keypass 123456 -storepass 123456 -keystore D:\apache-tomcat-8.5.56-https\conf\client.jks
 
-2、生成p12文件
+3、生成p12文件
 keytool -genkey -v -alias mykey -keyalg RSA -storetype PKCS12 -keystore D:\apache-tomcat-8.5.56-https\conf\mykey.p12
 
-3、让服务器信任客户端证书
-3.1
+4、让服务器信任客户端证书
+4.1
 P12生成cer
 keytool -export -alias mykey -keystore D:\apache-tomcat-8.5.56-https\conf\mykey.p12 -storetype PKCS12 -storepass 123456 -rfc -file D:\apache-tomcat-8.5.56-https\conf\mykey.cer
 
 jks生成cer
 keytool -export -alias client -file D:\apache-tomcat-8.5.56-https\conf\client.cer -storepass 123456 -keystore D:\apache-tomcat-8.5.56-https\conf\client.jks
 
-3.2 将证书导入到服务器证书库
+4.2 将证书导入到服务器证书库
 P12转换的cer导入到server库中
 keytool -import -v -file D:\apache-tomcat-8.5.56-https\conf\mykey.cer -keystore D:\apache-tomcat-8.5.56-https\conf\server.keystore
 
 将jks转换的cer导入到server库中
 keytool -import -v -alias client -file D:\apache-tomcat-8.5.56-https\conf\client.cer -keystore D:\apache-tomcat-8.5.56-https\conf\server.keystore -storepass 123456
 
-4、双向验证
+5、双向验证
 导出服务器证书为cer
 keytool -export -alias server -keystore D:\apache-tomcat-8.5.56-https\conf\server.keystore -storepass 123456 -file D:\apache-tomcat-8.5.56-https\conf\server.cer
 
-5、双击安装mykey.p12导入客户端证书
+6、双击安装mykey.p12导入客户端证书
 
-6、导入服务器公钥证书（server.cer）,双击安装server.cer,将证书安装本地，选择目录“受信任的根证书颁发机构”
+7、导入服务器公钥证书（server.cer）,双击安装server.cer,将证书安装本地，选择目录“受信任的根证书颁发机构”
 
 ```
 #### tomcat开启SSL认证
-``` bash
 修改tomcat配置 tomcat\conf\server.xml，找到注释的https配置位置，修改为如下内容，证书生成时就放在和配置文件同一目录下，证书密码123456，在生成时设置的，具体配置含义可自行百度
+``` bash
       <Connector port="8443" protocol="org.apache.coyote.http11.Http11NioProtocol"
                  maxHttpHeaderSize="8192"
                  maxThreads="150"
