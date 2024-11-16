@@ -32,36 +32,38 @@ TortoiseGit是一个Git的桌面操作工具，从[TortoiseGit官网](https://to
 
 ### 安装Node.Js
 从[Node.Js官网](https://nodejs.org/zh-cn/)选择对应操作系统下载，安装过程一路无脑下一步即可
+### 下载博客源码（clone远程仓库到本地）
+git clone git@github.com:username/username.github.io.git（源码的分支为hexo）
 
 ### 若博客本地目录已存在package.json文件
-执行下述命令即可安装插件，然后跳过后面的安装环节，直接进入使用环节
+进入博客本地源码目录，执行下述命令即可安装插件，然后跳过后面的安装环节，直接进入使用环节
     
 ``` bash
 $ npm install
 ```
 
 ### 安装 Hexo
-进入博客本地目录，执行下述命令即可安装hexo
+进入博客本地源码目录，执行下述命令即可安装hexo
 
 ``` bash
 $ npm install hexo-cli -g 
 ```
 
 ### 安装 Hexo发布插件
-进入博客本地目录，执行下述命令即可安装hexo 发布插件
+进入博客本地源码目录，执行下述命令即可安装hexo 发布插件
 
 ``` bash
 $ npm install npm install hexo-deployer-git --save
 ```
 ### 安装 Hexo-Admin插件
-进入博客本地目录，执行下述命令即可安装hexo 发布插件
+进入博客本地源码目录，执行下述命令即可安装hexo 发布插件
 
 ``` bash
 $ npm install --save hexo-admin
 ```
 
 ### 使用
-进入博客本地目录，执行下述命令
+进入博客本地源码目录，执行下述命令
 
 ``` bash
 $ hexo clean  --清理项目
@@ -70,6 +72,14 @@ $ hexo s --本地部署
 ```
 打开浏览器输入[http://localhost:4000/admin],即可在本地进行博客编写
 现在就可以正常使用hexo-admin插件了；hexo-admin插件的具体使用自行百度
+### 推送博客源码到GitHub
+进入博客本地目录，执行下述命令
+
+``` bash
+$ git add .
+$ git commit -m "some descrption"
+$ git push origin hexo
+```
 
 ### 发布博客
 进入博客本地目录，执行下述命令
@@ -77,5 +87,5 @@ $ hexo s --本地部署
 ``` bash
 $ hexo clean  --清理项目
 $ hexo g --本地编译
-$ hexo d --发布到GitHub
+$ hexo d --默认发布到GitHub的master分支
 ```
