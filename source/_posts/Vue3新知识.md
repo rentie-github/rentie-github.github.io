@@ -8,21 +8,21 @@ tags:
 
 ### 1、Vue3特点
 1、性能提升
-``` bash
+
     打包大小减少41%
     初次渲染快51%，更新渲染快133%
     内存占用减少54%
-``` 
+
 
 2、源码升级
-``` bash
+
     使用Proxy 代替Object.defineProperty 实现双向数据绑定
     重写虚拟DOM的实现和Tree-Shaking
     vue3 更好的支持typescript
-```  
+
 3、新的特性
 composition API（组合式api）
-``` bash
+
     setup配置
     ref和reactive
     watch 和watchEffect
@@ -31,10 +31,10 @@ composition API（组合式api）
     Fragment
     Teleport
     Suspense
-```  
+
 其他改变
-    新的生命周期钩子
-    移除keyCode 作为v-on的修饰符
+- 新的生命周期钩子
+- 移除keyCode 作为v-on的修饰符
     
 ##### 创建Vue3工程项目
 ``` bash
@@ -46,9 +46,11 @@ composition API（组合式api）
 // 6. npm run serve 启动项目
 ```
 ###### vite模板搭建vue3项目
+
 ``` bash
-npm init vue@latest
+   npm init vue@latest
 ```
+
 ![upload successful](/images/pasted-35.png)
 
 ###### vue3目录结构分析
