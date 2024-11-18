@@ -1,0 +1,274 @@
+title: Python学习记录（更新中......）
+author: Mario
+date: 2024-11-18 15:18:04
+tags:
+---
+python学习中，记录知识点
+<!--more-->
+
+### 注释
+
+``` bash
+# 这是一个单行注释
+
+"""
+这是一个多行注释
+"""
+
+'''
+这也是一个多行注释
+'''
+```
+### 变量
+我们的Python程序，处理的所有数据都必须在变量中。怎么去理解变量呢?官方的定义就是是变化的量叫变量，每一个变量都有变量名和变量值。从字面上看每个字都认识，但是好像不太好理解。所有的变量都存在内存中。你把内存看成是一个大的五星酒店。每一间房就代表数据存放的内存地址范围。在这一个地址范围中存起来的就是我们的数据，对应客房中所住的客人。为了快速的查我使用这个数据，通常我们把存储数据的地址范围和房间号一样，也定一个名称，这个名称就是变量。总结一下，房间就对应变量，房号对应变量名，入住的客人对应变量值，有了变量之后就可以快速的在茫茫(数海)的内存中，找到对应的数。
+
+##### 1、标识符（变量）命名规则
+
+Python中定义各种名字的时候的一规范，具体如下:
+- 由数字、字母、下划线组成
+- 不能数字开头
+- 严格区分大小写
+- 不能使用内置关键字(如下)
+
+![upload successful](/images/pasted-38.png)
+
+
+##### 2、命名习惯
+- 见名知义
+- 单词之间用下划线隔开，例如：my_name
+
+``` bash
+# 变量声明例子
+name = 'Mario'
+age = 30
+# 两个变量共用一个值
+name01 = name02 = ‘名字’
+# a=100 b=200
+a,b = 100,200
+```
+##### 3、数据类型
+
+Python是强类型语言，检测数据类型的函数：type()
+
+![upload successful](/images/pasted-39.png)
+``` bash
+# 字符串
+name = 'Mario'
+name2 ="test"
+# 整型
+age = 30
+# 浮点型
+high = 1.78
+# 布尔型
+a = False
+```
+### Python的输入与输出格式化
+##### 1、Python的输入
+
+input("提示信息")
+
+- 当程序执行到 input，等待用户输入，输入完成之后才继续向下执行。
+- 在Python中，input 接收用户输入后，一般存储到变量，方便使用。
+- 在Python中，input 会把接收到的任意用户输入的数据都当做字符串处理。
+
+<strong>注意:所有的通过input获取的数据,都是字符串类型。 Python是一门强类型的语言</strong>
+
+##### 2、类型转换
+
+转换数据类型常用的函数
+- int()
+- float()
+- str()
+- list()
+- tuple()
+- eval()
+
+![upload successful](/images/pasted-40.png)
+##### 3、Python的输出格式化
+
+一、用%(占位符)进行格式化输出
+
+![upload successful](/images/pasted-41.png)
+<strong>技巧</strong>
+- %s，可以输出字符串，也可以是数字
+- %06d，表示输出的整数显示位数，不足以0补全，超出当前位数则原样输出
+- %.2f，表示小数点后显示的小数位数。
+
+<strong>注意:因为计算机只认识和处理和二进制的数值，在实际的计算中，所有的数据都必须为二进制，计算后又转换回来，就是在这个过程中造成数据的截断误差。</strong>
+
+``` bash
+# 格式化输出
+x = 'mario'
+age=26
+high = 1.77
+print("我是%s 我的年龄是%d 我的身高%fm" % (x,age,high))
+
+# 精确的四舍五入
+from decimal import Decimal
+num = 1.773242353
+# 四舍五入，保留两位小数
+resu=Decimal(num).quantize(Decimal("0.00"),rounding="ROUND_HALF_UP")
+print(resu)
+```
+二、用f-string方法格式化输出
+
+格式化字符串除了%s，还可以写为 f'{表达式}
+``` bash
+# 格式化输出
+x = 'mario'
+age=26
+high = 1.77
+print(f"我是{x} 我的年龄是{age} 我的身高{high}m")
+```
+### Python的运算符
+运算符的分类
+
+- 算术运算符
+- 赋值运算符
+- 复合赋值运算符
+- 比较运算符
+- 逻辑运算符
+
+##### 1、算数运算符
+
+![upload successful](/images/pasted-42.png)
+
+``` bash
+# 2的平方
+print(2**2)
+pow(2,2)
+# 2的立方
+print(2**3)
+pow(2,3)
+# 8的立方根
+print(8**(1/3))
+pow(8,1/3)
+# 4的平方根
+print(4**0.5)
+pow(4,0.5)
+```
+##### 2、赋值运算符
+
+![upload successful](/images/pasted-43.png)
+
+##### 3、复合赋值运算符
+
+![upload successful](/images/pasted-44.png)
+<strong>注意：先计算后赋值</strong>
+
+##### 4、比较运算符
+
+比较运算符也叫关系运算符，通常用用来判断。
+
+![upload successful](/images/pasted-45.png)
+
+##### 5、逻辑运算符
+
+![upload successful](/images/pasted-46.png)
+- 与:and
+- 或:or
+- 非: not
+
+### Python的流程控制语句
+两种流程控制语句:
+- 条件语句
+- 循环语句
+
+##### 1、条件语句
+
+让程序根据条件有选择性的执行语句。
+- if子句必须有
+- elif 子句可以有0个或多个
+- else 子句可以有0个或1个，且只能放在if语句的最后
+
+![upload successful](/images/pasted-47.png)
+
+``` bash
+a = False
+print(type(a))
+if a:
+    print("真")
+else:
+    print("假")
+```
+
+一、if嵌套
+
+语法：
+![upload successful](/images/pasted-50.png)
+<strong>注意:条件2的if也是处于条件1成立执行的代码的缩进关系内部。</strong>
+``` bash
+a = False
+print(type(a))
+if a:
+    print("真")
+    if a:
+       print("真")
+    else:
+        print("假")
+else:
+    print("假")
+```
+二、三目条件运算
+
+三目运算也叫三元运算: 是为了快速给一个变量赋值，采用简单的条件语句。
+
+语法如下：满足条件的值1 if 条件 else 不满足条件的值2
+
+``` bash
+num = 2
+result = f'当前的数字{num}是偶数' if num %2 == 0 else f'当前的数字{num}是奇数'
+print(result)
+```
+##### 2、循环语句
+
+可以让一段代码，重复执行。
+- while循环
+- for循环
+
+![upload successful](/images/pasted-51.png)
+
+``` bash
+#计算1~100的所有数和
+my_sum=0 #定义一个结果
+n = 1
+while 1<=n<= 100:
+  my_sum += n
+  n += 1
+print(f'结果是:{my_sum}')
+
+#计算1~100的所有数和
+my_sum=0 #定义一个结果
+for n in range(1,100):
+    my_sum += n
+print(f'结果是:{my_sum}')
+```
+一、range函数
+
+用来创建一个生成一系列整数的可迭代对象(也叫整数序列生成器)。
+
+语法是:范围(开始点)，结束点，间隔))
+
+<strong>口诀:包头不包尾</strong>
+``` bash
+#计算1~100的所有数和
+my_sum=0 #定义一个结果
+for n in range(1,100):
+    my_sum += n
+print(f'结果是:{my_sum}')
+```
+
+二、break和continue
+
+break和continue都是用来控制循环结构的，主要作用是停止循环。
+
+1、break用于<strong>跳出一个循环体或者完全结束一个循环</strong>，可以结束其所在的循环
+- 结束当前整个循环，执行当前循环下边的语句。忽略循环体中任何其它语句
+- 只能跳出一层循环，如果你的循环是嵌套循环，那么你需要按照你嵌套的层次，逐步使用break来跳出。【逐层逐步跳出】
+
+2、continue语句的作用是<strong>跳过本次循环体中剩下尚未执行的语句，立即进行下一次的循环条件判定</strong>，可以理解为只是中止(跳过)本次循环，接着开始下一次循环。
+。
+- 终止本次循环的执行，即跳过当前这次循环中continue语句后尚未执行的语句，接着进行下一次循环条件的判断。
+- 终止当前的循环过程，但他并不跳出循环,而是继续往下判断循环条件执行语句.他只能结束循环中的一次过程,但不能终止循环继续进行。
+
+<strong>注意:break和continue只能用于循环语句中;并且:在嵌套循环中使用时，只对最内层循环有效。</strong>
