@@ -267,8 +267,147 @@ break和continue都是用来控制循环结构的，主要作用是停止循环�
 - 只能跳出一层循环，如果你的循环是嵌套循环，那么你需要按照你嵌套的层次，逐步使用break来跳出。【逐层逐步跳出】
 
 2、continue语句的作用是<strong>跳过本次循环体中剩下尚未执行的语句，立即进行下一次的循环条件判定</strong>，可以理解为只是中止(跳过)本次循环，接着开始下一次循环。
-。
 - 终止本次循环的执行，即跳过当前这次循环中continue语句后尚未执行的语句，接着进行下一次循环条件的判断。
 - 终止当前的循环过程，但他并不跳出循环,而是继续往下判断循环条件执行语句.他只能结束循环中的一次过程,但不能终止循环继续进行。
 
 <strong>注意:break和continue只能用于循环语句中;并且:在嵌套循环中使用时，只对最内层循环有效。</strong>
+
+### Python中的序列
+
+Python中序列:
+- 字符串
+- 列表
+- 元祖
+
+##### 1、字符串
+一、定义
+
+字符串是 Python 中最常用的数据类型。我们一般使用引年(单引号、双引号和三引号都可以)来创建字符串。字符串是由一个一个的字符组成的。
+<strong>注意:字符串中可能会包含一种特殊字符转义符</strong>
+``` bash
+var1 = "Hello Word!"
+var2 = 'Hello Word!'
+var3 = '''Hello Word!'''
+```
+二、下标
+
+“下标”又叫“索引”，就是编号。比如:学号，座位号，座位号的作用:按照编号快速找到对应的座位。同理，下标的作用即是通过下标快速找到对应的数据。(所有序列都有下标)
+
+<strong>注意:正向索引从0开始，反过来从-1开始</strong>
+
+![upload successful](/images/pasted-52.png)
+三、切片
+
+切片是指对操作的对象截取其中一部分的操作。字符串、列表、元组都支持切片操作。
+序列对象【开始位置下标:结束位置下标:步长】; 口诀:包头不包尾。
+``` bash
+name ="abcdefg"
+print(name[2:5:1])# cdeprint(name[2:5])# cde
+print(name[:5])# abcde
+# bcdefgprint(name[1:])
+print(name[:])# abcdefg
+print(name[::2])# aceg
+# abcdef，负1表示倒数第一个数据print(name[:-1])
+print(name[-4:-1])# def
+print(name[::-1])# gfedcba
+```
+四、字符串中的函数
+
+1、字符串查询(index，find)
+
+建议使用find，因为如果没有找到匹配的字符串，index方法会报异常
+
+![upload successful](/images/pasted-53.png)
+
+2、字符串大小写转换操作(upper、lower、swapcase、capitalize和title)
+
+![upload successful](/images/pasted-54.png)
+
+3、字符串对齐(center、just和zfill)
+
+![upload successful](/images/pasted-55.png)
+
+4、分割字符串(split、splitlines和partition)
+
+![upload successful](/images/pasted-56.png)
+
+5、合井与替换(join、replace)
+
+![upload successful](/images/pasted-57.png)
+
+6、判断字符串(isidentifier、isspace、isalpha、isdecimal、isnumeric和isanum等)
+
+![upload successful](/images/pasted-58.png)
+
+![upload successful](/images/pasted-59.png)
+
+7、去除两端多余字符操作(strip)
+
+![upload successful](/images/pasted-60.png)
+
+##### 2、列表List
+一、定义
+
+由一系列变量组成的可变序列容器。列表可以一次性存储多个数据，且可以为不同数据类型。
+``` bash
+[数据1、数据2，数据3......]
+lit = [1,2,3,4,'a','b','c']
+```
+二、列表的操作
+
+- <strong>下标和切片：</strong> 查找、修改、截取
+- <strong>index函数：</strong>返回指定数据所在位置的下标
+- <strong>count函数：</strong>统计指定数据在当前列表中出现的次数。
+- <strong>len函数(内置的)：</strong>访问列表长度，即列表中数据的个数。
+- <strong>append函数：</strong>列表结尾追加数据。
+- <strong>extend函数：</strong>列表结尾追加数据，如果数据是一个序列，则将这个序列的数据逐一添加到列表。
+- <strong>insert函数：</strong>指定位置新增数据
+- <strong>pop函数：</strong>删除指定下标的数据(默认为最后一个)，并返回该数据。
+- <strong>del表达式：</strong>内置的删除
+- <strong>remove函数：</strong>移除列表中某个数据的第一个匹配项,
+- <strong>reverse函数：</strong>逆序
+- <strong>sort函数：</strong>重新排序
+- <strong>for循环遍历</strong>
+
+##### 3、元组
+一、定义
+
+由一系列变量组成的不可变序列容器。不可变是指一但创建，不可以再添加/删除/修改元素。元组特点:元组使用小括号，且逗号隔开各个数据，数据可以是不同的数据类型，和列表一样都是有顺序的。
+``` bash
+元组名=(1,2,3)
+yz=(1,2,3,4,5,6,7,'a','b')
+# 元组中只有一个元素时，最后要加个逗号
+元组名=(1,)
+yz1=('abc',)
+```
+二、元组的操作
+
+- <strong>下标和切片：</strong> 查找、截取操作 I
+- <strong>index函数：</strong>返回指定数据所在位置的下标
+- <strong>count函数：</strong>统计指定数据在当前列表中出现的次数。
+- <strong>len函数(内置的)：</strong>访问列表长度，即列表中数据的个数。
+- <strong>for循环遍历</strong>
+
+##### 4、序列的通用操作
+一、数学运算符
+
+- +：用于拼接两个序列
+
+- +=：用原序列与右侧序列拼接,并重新绑定变量
+
+- *：重复生成序列中的元蒸
+
+- *=：用原序列生成重复元素,并重新绑定变量
+
+- < <= > >= == !=：依次比较两个序列中元素,一但不同则返回比较结果
+
+二、成员判断
+- 数据 in 序列
+- 数据 not in 序列
+
+三、Python内置函数操作
+
+- len(x)返回序列的长度
+- max(x)返回序列的最大值元素
+- min(x)返回序列的最小值元素
+- sum(x)返回序列中所有元素的和(元素必须是数值类型)
