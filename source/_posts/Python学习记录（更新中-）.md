@@ -411,3 +411,432 @@ yz1=('abc',)
 - max(x)返回序列的最大值元素
 - min(x)返回序列的最小值元素
 - sum(x)返回序列中所有元素的和(元素必须是数值类型)
+
+### Python的内置容器
+
+##### 1、容器的概念
+
+Python中，可包含其他对象的对象，称之为“容器”。容器是一种数据结构。常用的容器主要划分为两种:序列(如:列表、元组等)和映射(如:字典)。列中，每个元素都有下标，它们是有序的。映射中，每个元素都有名称(又称“键")，它们是无序的。除了序列和映射之外，还有一种需要注意的容器-"集合"。
+
+![upload successful](/images/pasted-62.png)
+
+##### 2、字典
+字典特点:
+
+- 符号为:大括号
+- 数据为:键值对 形式出现;<strong>字典中的“键”必须是独一无二的</strong>
+- 键和值之间用:冒号 隔开
+
+注意:般称冒号前面的为键(key)，简称k;冒号后面的为值(value)，简称v。<strong>合起来称之为“项”。</strong>
+
+1、定义字典
+
+字典是 Python 中的唯一内置映射，和之前所提到的列表、字符串一样，字典也拥有它的转换函数-- dict。
+``` bash
+# 创建字典
+dict1 = {} #空字典
+dict2 = {'name' : 'mario','age' : 30}
+dict3 = dict([('name','mario'),('age',30)])
+dict4 = dict(name='mario',age=30)
+```
+2、常见操作
+- 增/改/删除
+
+``` bash
+#增、删、改字典
+dict5 = {'name' : 'mario','age' : 30}
+dict5['age'] = 20
+del dict5['age']
+```
+- 查找
+
+  1、<strong>len(dict)：</strong>返回字典 dict 对应的项数。
+
+  2、<strong>d[ k ]：</strong>返回与键k相应的值。
+
+  3、<strong>k in d：</strong>检査键k是否包含于字典 d。
+
+- 字典中函数
+
+  1、-clear：可以清除字典中的所有数据
+  
+  2、-fromkeys：使用该方法可以创建一个新字典，其中包含指定的键，且每个键对应的值都是 None
+  
+  3、-get：直接访问字典中的值
+  
+  4、-items：会返回一个包含所有字典项的列表，其中每个元素都为键值对的形式，且排列顺序不确定。
+  
+  5、-keys：返回字典中的所有key，组成一个列表
+  
+  6、-values：返回字典中所有的value.
+  
+  7、-pop：删除并返回指定key的值
+  
+##### 3、Set集合
+由一系列不重复的不可变类型变量组成的可变散列容器。相当于只有键没有值的字典(键则是集合的数据)。
+
+<strong>创建集合</strong>使用{}或 set(),但是如果要创建空集合只能使用set(),因为 {} 用来创建空字典
+
+<strong>特点:
+  
+1、集合中不能出现重复的数据，自动去掉重复数据
+
+2、集合数据是无序的，故不支持下标</strong>
+
+``` bash
+set1 = set()
+set2={1,2,3,'123'}
+set1.add(99)
+set1.add('hello')
+print(set1)
+# 删除
+set1.remove('hello')
+print(set1)
+```
+##### 4、总结
+字符串str：储存字符编码值,不可变
+
+序列列表list：储存变量,可变
+
+序列元组tuple：储存变量,不可变
+
+序列字典dict：储存键值对,可变,散列;键不能重复且不可变
+
+集合set：储存键,可变,散列
+
+![upload successful](/images/pasted-63.png)
+
+- 不可变:数据在内存中本质都是不可变,采用按需分配的存储机制;就更无法改变内存中的值。
+
+- 可变:具有扩容能力,采用预留空间的存储机制
+
+<strong>不可变:基本类型(字符串，int，float等)，tuple</strong>
+
+<strong>可变:list，dict，set</strong>
+
+### Python的函数
+
+##### 一、函数的定义
+
+<strong>函数是组织好的，可重复使用的，用来实现相关功能的代码段。</strong>
+
+函数能提高应用的模块性，和代码的重复利用率。Python提供了许多内建函数，比如print()。我们也可以自己创建函数，这被叫做用户自定义函数。
+
+1、定义函数
+``` bash
+def test(a,b):
+    return a+b
+```
+2、调用函数
+``` bash
+print(test(1, 2))
+```
+<strong>注意:</strong>
+- 不同的需求，参数可有可无
+- 在Python中，函数必须先定义,后使用
+
+##### 二、函数中的参数
+
+1、必要传参，也叫位置参数
+
+定义函数时，根据需求必需要传递的参数工而且，在调用函数时根据函数定义的参数位置顺序来传递参数。
+``` bash
+# 位置参数
+def test(a,b):
+    return a+b
+
+print(test(1, 2))
+```
+
+<strong>注意:传递和定义参数的顺序及个数必须一致</strong>
+
+2、关键字传参
+
+函数调用，通过“键=值“形式加以指定。可以让函数更加清晰、容易使用，同时也清除了参数的顺序需求。
+
+<strong>注意:函数调用时，如果有位置参数时，位置参数必须在关键字参数的前面，但关键字参数之间不存在先后顺序。</strong>
+
+``` bash
+# 不定长名称参数+默认值参数
+def test3(init_sum=1,**kwargs):
+    return init_sum+sum(kwargs.values())
+```
+3、默认传参
+
+用于定义函数，为参数提供默认值，调用函数时可不传该默认参数的值(注意:所有位置参数必须出现在默认参数前，包括函数定义和调用)
+
+``` bash
+# 位置参数+默认值参数
+def test1(a,b,init_sum=10):
+    return a+b+init_sum
+
+print(test1(1, 2))
+```
+4、不定长传参
+
+不定长参数也叫可变参数。用于不确定调用的时候会传递多少个参数(不传参也可以)的场景。此时，来进行参数传递，会显得非常方便。
+
+- 不定长普通参数
+- 不定长关键字参数
+
+``` bash
+# 不定长参数+默认参数
+def test2(*args,init_sum=10):
+    return init_sum+sum(args)
+
+
+print(test2(1, 2, 3, 4, 5, init_sum=12))
+```
+<strong>参数顺序 位置参数->默认值参数->不定长普通参数->不定长关键字参数</strong>
+
+##### 三、函数的返回值
+
+return 语句用于返回函数的值，并且退出函数，选择性地使用return 语句， 默认是返回 None
+ - return a，b写法，返回多个数据的时候，默认是元组类型。
+ - return后面可以连接列表、元组或字典，以返回多个值。
+ 
+##### 四、局部变量和全局变量
+1、局部变量
+
+就是在函数内部定义的变量;其作用范围是这个函数内部，即只能在这个函数中使用，在函数的外部是不能使用的;
+因为其作用范围只是在自己的函数内部，所以不同的函数可以定义相同名字的局部变量当函数调用时，局部变量被创建，当函数调用完成后这个变量就不能够使用了
+``` bash
+a = 1
+def test2():
+    global a # 在函数内部，使用global声明a为全局变量
+    a=30 #对全局变量a 进行的修改
+    print(a)
+test2()
+print(a)
+```
+2、全局变量
+
+全局变量和局部变量的区别在于定义在函数的外面，全局变量在整个py文件中声明，全局范围内可以使用
+
+<strong>注意: 当函数内出现局部变量和全局变量相同名字时，函数内部中的 变量名 = 数据 ，此时理解为定义了-个局部变量，而不是修改全局变量的值。如果要修改全局变量，必须使用global。</strong>
+
+##### 五、总结
+
+- 函数的定义:
+
+  可重复使用的，用来实现某个功能的代码段。
+- 函数使用
+
+  定义函数
+  ``` bash
+   def 函数名():
+      代码1
+      代码2
+      ...
+  ```
+  调用函数
+  ``` bash
+     函数名()
+  ```
+- 函数的参数:
+
+  *必要传参
+  
+  *默认传参
+  
+  *关键字传参
+  
+  *不定长传参
+  
+- 函数的返回值
+
+  *作用:函数调用后，返回需要的计算结果
+  
+  *return关键字
+  
+- 局部变量和全局变量
+
+  *局部变量:在函数内部定义的变量，只能在函数内部使用
+  
+  *全局变量:是在函数外部定义的变量，所有函数内部都可以使用这个变量
+  
+##### 六、易错题
+
+``` bash
+#定义一个函数
+def test(a,lst1=[1,2]):
+    # 把a添加到列表中
+    if a not in lst1:
+      lst1.append(a)
+    return lst1
+print(f'第一次调用test函数的结果是:{test(10)}')#1、2，10
+print(f'第二次调用test函数的结果是:{test(20)}')#1、2、20 正确的是:1，2，10，20
+print(f'第三次调用test函数的结果是::{test(30,lst1=[60,70])}') #正确的是:60，70，30
+print(f'第四次调用test函数的结果是:{test(40)}')#正确的是:1，2，10，20,40
+```
+### 递归函数和高阶函数
+
+##### 1、递归函数
+递归函数: 在函数的内部自己调用自己，并且有退出函数的出口。
+
+<strong>应用:</strong>
+
+- 如果要遍历一个文件夹下面所有的文件，通常会使用递归来实现，
+- 很多算法都离不开递归，例如:快速排序。
+
+![upload successful](/images/pasted-64.png)
+
+``` bash
+# 需求:计算一个正整数n的阶乘
+def test(n: int)-> int:
+  '''
+  计算一个数字n的阶乘
+  :param n:
+  :return:
+  '''
+  if n == 1:
+    return 1 #递归函数退出的出口
+  return n* test(n-1)
+
+print(test(2))
+```
+##### 2、匿名函数:lambda
+如果一个函数有一个返回值，并且只有一句代码，可以使用lambda简化。
+``` bash
+lambda 参数列表: 表达式
+```
+<strong>注意:</strong>
+
+- lambda表达式的参数可有可无;
+- 函数的参数在lambda表达式中完全适用。
+- lambda表达式能接收任何数量的参数但只能返回一个表达式的值。
+- 直接打印lambda表达式，输出的是此lambda的内存地址
+``` bash
+lambdaFun = lambda a,b: a+b
+print(lambdaFun(1, 2))
+```
+
+使用匿名函数做判断:
+
+``` bash
+  fn1 = lambda a, b: a if a > b else b
+  print(fn1(1000,580))
+
+```
+
+使用匿名函数和sort函数结合完成排序:
+``` bash
+#需要给某个复杂的列表排序
+lst =[
+{'name':'张三','age': 34},
+{'name':'李四','age': 34},
+{'name':'王五','age': 34}]
+# 根据年龄来排序(降序)
+lst.sort(key=lambda item: item['age'],reverse=True)
+print(lst)
+```
+##### 3、高阶函数
+把函数作为参数传入，或者返回值是另外一个函数，这样的函数称为高阶函数，高阶函数是函数式编程的体现。函数式编程就是指这种高度抽象的编程范式。函数式编程大量使用函数，减少了代码的重复，因此程序比较短，开发速度较快。
+
+一、函数的参数是函数
+``` bash
+#对任意两个数字，整理之后再求和
+def sum_num(a, b):
+   return abs(a)+ abs(b)
+
+#高阶函数的实现
+def sum_num2(a,b,f):
+    '''
+    :param a:
+    :param b:
+    :param f:就是对两个数字进行整理的函数
+    :return:
+    '''
+    return f(a)+f(b)
+#通过绝对值整理之后再求和
+print(sum_num2(2,6,abs))
+#通过平方整理之后再求和
+print(sum_num2(2,6,lambda n:n**2))
+```
+二、函数的返回值是函数
+
+高阶函数除了可以接受函数作为参数外，还可以把函数作为结果值返回，一个函数返回值(return)为另外一个函数。
+``` bash
+def sum_fun_b(*args):
+    def sum_a():
+        a=0
+        for n in args:
+            a=a+n
+        return a
+    return sum_a
+```
+##### 4、Python中内置的高阶函数
+一、map函数
+
+map函数接收的是两个参数，一个是函数名，另外一个是序列，其功能是将序列中的数值作为函数的参数依次传入到函数值中执行，然后再返回到列表中。返回值是一个迭代器对象。
+
+![upload successful](/images/pasted-65.png)
+``` bash
+# map函数
+# 结果为[1,4,9,16,25,36]
+print(list(map(lambda n:n **2,[1,2,3,4,5,6])))
+```
+二、reduce函数
+
+reduce函数也是一个参数为函数，另一个参数为序列对象(比如: list列表)。其返回值为一个值而不是迭代器对象，故其常用与叠加、叠乘等等。
+
+函数详解:
+
+- function:一个有两个参数的函数
+- sequence:是一个序列，是一些数据的集合，或者是一组数据，可迭代对象
+- initial:可选，初始参数
+- 返回值:返回函数计算的结果
+- reduce()函数,使用function函数(有两个参数)先对集合中的sequence第 1、2 个元素进行操作，如果5.存在initial参数，则将会以sequence中的第一个元素和initial作为参数，用作调用，得到的结果再与sequence中的下个数据用 function 函数运算，最后得到一个结果
+
+![upload successful](/images/pasted-66.png)
+``` bash
+#reduce函数
+from functools import reduce
+print(reduce(lambda x,y:x+y,[2,4,6,8,10],10))
+```
+``` bash
+#reduce函数
+from functools import reduce
+print(reduce(lambda x,y:x+y,[2,4,6,8,10],10))
+```
+``` bash
+# 案例:给你很长的字符串,统计字符串中每个单词出现的次数
+str1 = 'hello world python hello python java hello python flask'
+# 第一步,把单词切开
+lst =str1.split('')
+#第二部:每个单词只要出现了,那么就代表有一次
+#['hello':1,'world':1,...]
+new_lst = list(map(lambda item:{item: 1},lst))
+#第三步:调用reduce实现相同单词的叠加
+def func(dict1,dict2):
+    #把dict1作为叠加的返回字典
+    key =list(dict2.items())[0][0] # 得到dict2中的key(单词:world)
+    value =list(dict2.items())[0][1] # 得到dict2中的value(1)
+    dict1[key]= dict1.get(key, 0)+ value
+    return dict1
+from functools import reduce
+print(reduce(func, new_lst))
+```
+三、filter函数
+
+Python内建的 filter()函数用于过滤序列，和 map()类似，filter()也接收一个函数和一个序列;但是不同的是 filter()把传入的函数依次作用于每个元素，然后根据返回值是 True 还是 False 决定元素的保留与丢弃。
+``` bash
+lst1 = [1,2,3,4,5,6,7,8,9,10]
+# 偶数留下
+print(list(filter(lambda n:n%2 ==0,lst1)))
+```
+四、sorted函数
+
+Python内置的sorted()函数就可以对list进行排序;和序列中本身的sort函数类似。
+
+``` bash
+sorted([36,5,-12,9,-21])
+#[-21,-12,5,9,36]
+
+sorted([36,5,-12,9,-21],key=abs)
+#[5,9,-12,-21,36]
+
+sorted(['bob','about','Zoo','Credit'],key=str.lower)
+#['about','bob','Credit','Zoo']
+```
+默认情况下，对字符串排序，是按照ASCII的大小比较的，由于'Z'<'a'，结果，大写字母Z会排在小写字母a的前面。所以，需要忽略大小写来比较两个字符串，实际上就是先把字符串都变成大写(或者都变成小写)，再比较。
