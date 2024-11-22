@@ -57,7 +57,7 @@
 <meta property="og:image" content="http://yoursite.com/images/pasted-65.png">
 <meta property="og:image" content="http://yoursite.com/images/pasted-66.png">
 <meta property="article:published_time" content="2024-11-18T07:18:04.000Z">
-<meta property="article:modified_time" content="2024-11-22T03:21:19.133Z">
+<meta property="article:modified_time" content="2024-11-22T03:29:22.709Z">
 <meta property="article:author" content="Mario">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://yoursite.com/images/pasted-38.png">
@@ -588,7 +588,6 @@
 </ul>
 <p><img src="/images/pasted-66.png" alt="upload successful"></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#reduce函数</span></span><br><span class="line">from functools import reduce</span><br><span class="line"><span class="built_in">print</span>(reduce(lambda x,y:x+y,[2,4,6,8,10],10))</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#reduce函数</span></span><br><span class="line">from functools import reduce</span><br><span class="line"><span class="built_in">print</span>(reduce(lambda x,y:x+y,[2,4,6,8,10],10))</span><br></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 案例:给你很长的字符串,统计字符串中每个单词出现的次数</span></span><br><span class="line">str1 = <span class="string">'hello world python hello python java hello python flask'</span></span><br><span class="line"><span class="comment"># 第一步,把单词切开</span></span><br><span class="line">lst =str1.split(<span class="string">''</span>)</span><br><span class="line"><span class="comment">#第二部:每个单词只要出现了,那么就代表有一次</span></span><br><span class="line"><span class="comment">#['hello':1,'world':1,...]</span></span><br><span class="line">new_lst = list(map(lambda item:&#123;item: 1&#125;,lst))</span><br><span class="line"><span class="comment">#第三步:调用reduce实现相同单词的叠加</span></span><br><span class="line">def func(dict1,dict2):</span><br><span class="line">    <span class="comment">#把dict1作为叠加的返回字典</span></span><br><span class="line">    key =list(dict2.items())[0][0] <span class="comment"># 得到dict2中的key(单词:world)</span></span><br><span class="line">    value =list(dict2.items())[0][1] <span class="comment"># 得到dict2中的value(1)</span></span><br><span class="line">    dict1[key]= dict1.get(key, 0)+ value</span><br><span class="line">    <span class="built_in">return</span> dict1</span><br><span class="line">from functools import reduce</span><br><span class="line"><span class="built_in">print</span>(reduce(func, new_lst))</span><br></pre></td></tr></table></figure>
 <p>三、filter函数</p>
 <p>Python内建的 filter()函数用于过滤序列，和 map()类似，filter()也接收一个函数和一个序列;但是不同的是 filter()把传入的函数依次作用于每个元素，然后根据返回值是 True 还是 False 决定元素的保留与丢弃。</p>
@@ -840,11 +839,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">mq</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">mq</a>
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
             
             <div class="clearfix"></div>
