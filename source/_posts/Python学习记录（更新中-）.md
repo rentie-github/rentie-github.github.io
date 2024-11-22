@@ -795,11 +795,6 @@ from functools import reduce
 print(reduce(lambda x,y:x+y,[2,4,6,8,10],10))
 ```
 ``` bash
-#reduce函数
-from functools import reduce
-print(reduce(lambda x,y:x+y,[2,4,6,8,10],10))
-```
-``` bash
 # 案例:给你很长的字符串,统计字符串中每个单词出现的次数
 str1 = 'hello world python hello python java hello python flask'
 # 第一步,把单词切开
