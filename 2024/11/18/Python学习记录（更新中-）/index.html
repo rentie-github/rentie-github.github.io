@@ -56,8 +56,11 @@
 <meta property="og:image" content="http://yoursite.com/images/pasted-64.png">
 <meta property="og:image" content="http://yoursite.com/images/pasted-65.png">
 <meta property="og:image" content="http://yoursite.com/images/pasted-66.png">
+<meta property="og:image" content="http://yoursite.com/images/pasted-67.png">
+<meta property="og:image" content="http://yoursite.com/images/pasted-69.png">
+<meta property="og:image" content="http://yoursite.com/images/pasted-70.png">
 <meta property="article:published_time" content="2024-11-18T07:18:04.000Z">
-<meta property="article:modified_time" content="2024-11-22T03:29:22.709Z">
+<meta property="article:modified_time" content="2024-12-01T08:07:14.328Z">
 <meta property="article:author" content="Mario">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://yoursite.com/images/pasted-38.png">
@@ -223,7 +226,7 @@
 
 <h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 这是一个单行注释</span></span><br><span class="line"></span><br><span class="line"><span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">这是一个多行注释</span></span><br><span class="line"><span class="string">"</span><span class="string">""</span></span><br><span class="line"></span><br><span class="line"><span class="string">''</span><span class="string">'</span></span><br><span class="line"><span class="string">这也是一个多行注释</span></span><br><span class="line"><span class="string">'</span><span class="string">''</span></span><br></pre></td></tr></table></figure>
 <h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><p>我们的Python程序，处理的所有数据都必须在变量中。怎么去理解变量呢?官方的定义就是是变化的量叫变量，每一个变量都有变量名和变量值。从字面上看每个字都认识，但是好像不太好理解。所有的变量都存在内存中。你把内存看成是一个大的五星酒店。每一间房就代表数据存放的内存地址范围。在这一个地址范围中存起来的就是我们的数据，对应客房中所住的客人。为了快速的查我使用这个数据，通常我们把存储数据的地址范围和房间号一样，也定一个名称，这个名称就是变量。总结一下，房间就对应变量，房号对应变量名，入住的客人对应变量值，有了变量之后就可以快速的在茫茫(数海)的内存中，找到对应的数。</p>
-<h5 id="1、标识符（变量）命名规则"><a href="#1、标识符（变量）命名规则" class="headerlink" title="1、标识符（变量）命名规则"></a>1、标识符（变量）命名规则</h5><p>Python中定义各种名字的时候的一规范，具体如下:</p>
+<h5 id="一、标识符（变量）命名规则"><a href="#一、标识符（变量）命名规则" class="headerlink" title="一、标识符（变量）命名规则"></a>一、标识符（变量）命名规则</h5><p>Python中定义各种名字的时候的一规范，具体如下:</p>
 <ul>
 <li>由数字、字母、下划线组成</li>
 <li>不能数字开头</li>
@@ -231,22 +234,22 @@
 <li>不能使用内置关键字(如下)</li>
 </ul>
 <p><img src="/images/pasted-38.png" alt="upload successful"></p>
-<h5 id="2、命名习惯"><a href="#2、命名习惯" class="headerlink" title="2、命名习惯"></a>2、命名习惯</h5><ul>
+<h5 id="二、命名习惯"><a href="#二、命名习惯" class="headerlink" title="二、命名习惯"></a>二、命名习惯</h5><ul>
 <li>见名知义</li>
 <li>单词之间用下划线隔开，例如：my_name</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 变量声明例子</span></span><br><span class="line">name = <span class="string">'Mario'</span></span><br><span class="line">age = 30</span><br><span class="line"><span class="comment"># 两个变量共用一个值</span></span><br><span class="line">name01 = name02 = ‘名字’</span><br><span class="line"><span class="comment"># a=100 b=200</span></span><br><span class="line">a,b = 100,200</span><br></pre></td></tr></table></figure>
-<h5 id="3、数据类型"><a href="#3、数据类型" class="headerlink" title="3、数据类型"></a>3、数据类型</h5><p>Python是强类型语言，检测数据类型的函数：type()</p>
+<h5 id="三、数据类型"><a href="#三、数据类型" class="headerlink" title="三、数据类型"></a>三、数据类型</h5><p>Python是强类型语言，检测数据类型的函数：type()</p>
 <p><img src="/images/pasted-39.png" alt="upload successful"></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 字符串</span></span><br><span class="line">name = <span class="string">'Mario'</span></span><br><span class="line">name2 =<span class="string">"test"</span></span><br><span class="line"><span class="comment"># 整型</span></span><br><span class="line">age = 30</span><br><span class="line"><span class="comment"># 浮点型</span></span><br><span class="line">high = 1.78</span><br><span class="line"><span class="comment"># 布尔型</span></span><br><span class="line">a = False</span><br></pre></td></tr></table></figure>
-<h3 id="Python的输入与输出格式化"><a href="#Python的输入与输出格式化" class="headerlink" title="Python的输入与输出格式化"></a>Python的输入与输出格式化</h3><h5 id="1、Python的输入"><a href="#1、Python的输入" class="headerlink" title="1、Python的输入"></a>1、Python的输入</h5><p>input(“提示信息”)</p>
+<h3 id="Python的输入与输出格式化"><a href="#Python的输入与输出格式化" class="headerlink" title="Python的输入与输出格式化"></a>Python的输入与输出格式化</h3><h5 id="一、Python的输入"><a href="#一、Python的输入" class="headerlink" title="一、Python的输入"></a>一、Python的输入</h5><p>input(“提示信息”)</p>
 <ul>
 <li>当程序执行到 input，等待用户输入，输入完成之后才继续向下执行。</li>
 <li>在Python中，input 接收用户输入后，一般存储到变量，方便使用。</li>
 <li>在Python中，input 会把接收到的任意用户输入的数据都当做字符串处理。</li>
 </ul>
 <p><strong>注意:所有的通过input获取的数据,都是字符串类型。 Python是一门强类型的语言</strong></p>
-<h5 id="2、类型转换"><a href="#2、类型转换" class="headerlink" title="2、类型转换"></a>2、类型转换</h5><p>转换数据类型常用的函数</p>
+<h5 id="二、类型转换"><a href="#二、类型转换" class="headerlink" title="二、类型转换"></a>二、类型转换</h5><p>转换数据类型常用的函数</p>
 <ul>
 <li>int()</li>
 <li>float()</li>
@@ -256,7 +259,7 @@
 <li>eval()</li>
 </ul>
 <p><img src="/images/pasted-40.png" alt="upload successful"></p>
-<h5 id="3、Python的输出格式化"><a href="#3、Python的输出格式化" class="headerlink" title="3、Python的输出格式化"></a>3、Python的输出格式化</h5><p>一、用%(占位符)进行格式化输出</p>
+<h5 id="三、Python的输出格式化"><a href="#三、Python的输出格式化" class="headerlink" title="三、Python的输出格式化"></a>三、Python的输出格式化</h5><p>一、用%(占位符)进行格式化输出</p>
 <p><img src="/images/pasted-41.png" alt="upload successful"><br><strong>技巧</strong></p>
 <ul>
 <li>%s，可以输出字符串，也可以是数字</li>
@@ -276,13 +279,13 @@
 <li>比较运算符</li>
 <li>逻辑运算符</li>
 </ul>
-<h5 id="1、算数运算符"><a href="#1、算数运算符" class="headerlink" title="1、算数运算符"></a>1、算数运算符</h5><p><img src="/images/pasted-42.png" alt="upload successful"></p>
+<h5 id="一、算数运算符"><a href="#一、算数运算符" class="headerlink" title="一、算数运算符"></a>一、算数运算符</h5><p><img src="/images/pasted-42.png" alt="upload successful"></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 2的平方</span></span><br><span class="line"><span class="built_in">print</span>(2**2)</span><br><span class="line">pow(2,2)</span><br><span class="line"><span class="comment"># 2的立方</span></span><br><span class="line"><span class="built_in">print</span>(2**3)</span><br><span class="line">pow(2,3)</span><br><span class="line"><span class="comment"># 8的立方根</span></span><br><span class="line"><span class="built_in">print</span>(8**(1/3))</span><br><span class="line">pow(8,1/3)</span><br><span class="line"><span class="comment"># 4的平方根</span></span><br><span class="line"><span class="built_in">print</span>(4**0.5)</span><br><span class="line">pow(4,0.5)</span><br></pre></td></tr></table></figure>
-<h5 id="2、赋值运算符"><a href="#2、赋值运算符" class="headerlink" title="2、赋值运算符"></a>2、赋值运算符</h5><p><img src="/images/pasted-43.png" alt="upload successful"></p>
-<h5 id="3、复合赋值运算符"><a href="#3、复合赋值运算符" class="headerlink" title="3、复合赋值运算符"></a>3、复合赋值运算符</h5><p><img src="/images/pasted-44.png" alt="upload successful"><br><strong>注意：先计算后赋值</strong></p>
-<h5 id="4、比较运算符"><a href="#4、比较运算符" class="headerlink" title="4、比较运算符"></a>4、比较运算符</h5><p>比较运算符也叫关系运算符，通常用用来判断。</p>
+<h5 id="二、赋值运算符"><a href="#二、赋值运算符" class="headerlink" title="二、赋值运算符"></a>二、赋值运算符</h5><p><img src="/images/pasted-43.png" alt="upload successful"></p>
+<h5 id="三、复合赋值运算符"><a href="#三、复合赋值运算符" class="headerlink" title="三、复合赋值运算符"></a>三、复合赋值运算符</h5><p><img src="/images/pasted-44.png" alt="upload successful"><br><strong>注意：先计算后赋值</strong></p>
+<h5 id="四、比较运算符"><a href="#四、比较运算符" class="headerlink" title="四、比较运算符"></a>四、比较运算符</h5><p>比较运算符也叫关系运算符，通常用用来判断。</p>
 <p><img src="/images/pasted-45.png" alt="upload successful"></p>
-<h5 id="5、逻辑运算符"><a href="#5、逻辑运算符" class="headerlink" title="5、逻辑运算符"></a>5、逻辑运算符</h5><p><img src="/images/pasted-46.png" alt="upload successful"></p>
+<h5 id="五、逻辑运算符"><a href="#五、逻辑运算符" class="headerlink" title="五、逻辑运算符"></a>五、逻辑运算符</h5><p><img src="/images/pasted-46.png" alt="upload successful"></p>
 <ul>
 <li>与:and</li>
 <li>或:or</li>
@@ -293,7 +296,7 @@
 <li>条件语句</li>
 <li>循环语句</li>
 </ul>
-<h5 id="1、条件语句"><a href="#1、条件语句" class="headerlink" title="1、条件语句"></a>1、条件语句</h5><p>让程序根据条件有选择性的执行语句。</p>
+<h5 id="一、条件语句"><a href="#一、条件语句" class="headerlink" title="一、条件语句"></a>一、条件语句</h5><p>让程序根据条件有选择性的执行语句。</p>
 <ul>
 <li>if子句必须有</li>
 <li>elif 子句可以有0个或多个</li>
@@ -309,7 +312,7 @@
 <p>三目运算也叫三元运算: 是为了快速给一个变量赋值，采用简单的条件语句。</p>
 <p>语法如下：满足条件的值1 if 条件 else 不满足条件的值2</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">num = 2</span><br><span class="line">result = f<span class="string">'当前的数字&#123;num&#125;是偶数'</span> <span class="keyword">if</span> num %2 == 0 <span class="keyword">else</span> f<span class="string">'当前的数字&#123;num&#125;是奇数'</span></span><br><span class="line"><span class="built_in">print</span>(result)</span><br></pre></td></tr></table></figure>
-<h5 id="2、循环语句"><a href="#2、循环语句" class="headerlink" title="2、循环语句"></a>2、循环语句</h5><p>可以让一段代码，重复执行。</p>
+<h5 id="二、循环语句"><a href="#二、循环语句" class="headerlink" title="二、循环语句"></a>二、循环语句</h5><p>可以让一段代码，重复执行。</p>
 <ul>
 <li>while循环</li>
 <li>for循环</li>
@@ -341,7 +344,7 @@
 <li>列表</li>
 <li>元祖</li>
 </ul>
-<h5 id="1、字符串"><a href="#1、字符串" class="headerlink" title="1、字符串"></a>1、字符串</h5><p>一、定义</p>
+<h5 id="一、字符串"><a href="#一、字符串" class="headerlink" title="一、字符串"></a>一、字符串</h5><p>一、定义</p>
 <p>字符串是 Python 中最常用的数据类型。我们一般使用引年(单引号、双引号和三引号都可以)来创建字符串。字符串是由一个一个的字符组成的。<br><strong>注意:字符串中可能会包含一种特殊字符转义符</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var1 = <span class="string">"Hello Word!"</span></span><br><span class="line">var2 = <span class="string">'Hello Word!'</span></span><br><span class="line">var3 = <span class="string">''</span><span class="string">'Hello Word!'</span><span class="string">''</span></span><br></pre></td></tr></table></figure>
 <p>二、下标</p>
@@ -367,7 +370,7 @@
 <p><img src="/images/pasted-59.png" alt="upload successful"></p>
 <p>7、去除两端多余字符操作(strip)</p>
 <p><img src="/images/pasted-60.png" alt="upload successful"></p>
-<h5 id="2、列表List"><a href="#2、列表List" class="headerlink" title="2、列表List"></a>2、列表List</h5><p>一、定义</p>
+<h5 id="二、列表List"><a href="#二、列表List" class="headerlink" title="二、列表List"></a>二、列表List</h5><p>一、定义</p>
 <p>由一系列变量组成的可变序列容器。列表可以一次性存储多个数据，且可以为不同数据类型。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[数据1、数据2，数据3......]</span><br><span class="line">lit = [1,2,3,4,<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>]</span><br></pre></td></tr></table></figure>
 <p>二、列表的操作</p>
@@ -386,7 +389,7 @@
 <li><strong>sort函数：</strong>重新排序</li>
 <li><strong>for循环遍历</strong></li>
 </ul>
-<h5 id="3、元组"><a href="#3、元组" class="headerlink" title="3、元组"></a>3、元组</h5><p>一、定义</p>
+<h5 id="三、元组"><a href="#三、元组" class="headerlink" title="三、元组"></a>三、元组</h5><p>一、定义</p>
 <p>由一系列变量组成的不可变序列容器。不可变是指一但创建，不可以再添加/删除/修改元素。元组特点:元组使用小括号，且逗号隔开各个数据，数据可以是不同的数据类型，和列表一样都是有顺序的。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">元组名=(1,2,3)</span><br><span class="line">yz=(1,2,3,4,5,6,7,<span class="string">'a'</span>,<span class="string">'b'</span>)</span><br><span class="line"><span class="comment"># 元组中只有一个元素时，最后要加个逗号</span></span><br><span class="line">元组名=(1,)</span><br><span class="line">yz1=(<span class="string">'abc'</span>,)</span><br></pre></td></tr></table></figure>
 <p>二、元组的操作</p>
@@ -397,7 +400,7 @@
 <li><strong>len函数(内置的)：</strong>访问列表长度，即列表中数据的个数。</li>
 <li><strong>for循环遍历</strong></li>
 </ul>
-<h5 id="4、序列的通用操作"><a href="#4、序列的通用操作" class="headerlink" title="4、序列的通用操作"></a>4、序列的通用操作</h5><p>一、数学运算符</p>
+<h5 id="四、序列的通用操作"><a href="#四、序列的通用操作" class="headerlink" title="四、序列的通用操作"></a>四、序列的通用操作</h5><p>一、数学运算符</p>
 <ul>
 <li><p>+：用于拼接两个序列</p>
 </li>
@@ -422,9 +425,9 @@
 <li>min(x)返回序列的最小值元素</li>
 <li>sum(x)返回序列中所有元素的和(元素必须是数值类型)</li>
 </ul>
-<h3 id="Python的内置容器"><a href="#Python的内置容器" class="headerlink" title="Python的内置容器"></a>Python的内置容器</h3><h5 id="1、容器的概念"><a href="#1、容器的概念" class="headerlink" title="1、容器的概念"></a>1、容器的概念</h5><p>Python中，可包含其他对象的对象，称之为“容器”。容器是一种数据结构。常用的容器主要划分为两种:序列(如:列表、元组等)和映射(如:字典)。列中，每个元素都有下标，它们是有序的。映射中，每个元素都有名称(又称“键”)，它们是无序的。除了序列和映射之外，还有一种需要注意的容器-“集合”。</p>
+<h3 id="Python的内置容器"><a href="#Python的内置容器" class="headerlink" title="Python的内置容器"></a>Python的内置容器</h3><h5 id="一、容器的概念"><a href="#一、容器的概念" class="headerlink" title="一、容器的概念"></a>一、容器的概念</h5><p>Python中，可包含其他对象的对象，称之为“容器”。容器是一种数据结构。常用的容器主要划分为两种:序列(如:列表、元组等)和映射(如:字典)。列中，每个元素都有下标，它们是有序的。映射中，每个元素都有名称(又称“键”)，它们是无序的。除了序列和映射之外，还有一种需要注意的容器-“集合”。</p>
 <p><img src="/images/pasted-62.png" alt="upload successful"></p>
-<h5 id="2、字典"><a href="#2、字典" class="headerlink" title="2、字典"></a>2、字典</h5><p>字典特点:</p>
+<h5 id="二、字典"><a href="#二、字典" class="headerlink" title="二、字典"></a>二、字典</h5><p>字典特点:</p>
 <ul>
 <li>符号为:大括号</li>
 <li>数据为:键值对 形式出现;<strong>字典中的“键”必须是独一无二的</strong></li>
@@ -455,13 +458,13 @@
 <p>7、-pop：删除并返回指定key的值</p>
 </li>
 </ul>
-<h5 id="3、Set集合"><a href="#3、Set集合" class="headerlink" title="3、Set集合"></a>3、Set集合</h5><p>由一系列不重复的不可变类型变量组成的可变散列容器。相当于只有键没有值的字典(键则是集合的数据)。</p>
+<h5 id="三、Set集合"><a href="#三、Set集合" class="headerlink" title="三、Set集合"></a>三、Set集合</h5><p>由一系列不重复的不可变类型变量组成的可变散列容器。相当于只有键没有值的字典(键则是集合的数据)。</p>
 <p><strong>创建集合</strong>使用{}或 set(),但是如果要创建空集合只能使用set(),因为 {} 用来创建空字典</p>
 <p><strong>特点:</p>
 <p>1、集合中不能出现重复的数据，自动去掉重复数据</p>
 <p>2、集合数据是无序的，故不支持下标</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">set1 = <span class="built_in">set</span>()</span><br><span class="line">set2=&#123;1,2,3,<span class="string">'123'</span>&#125;</span><br><span class="line">set1.add(99)</span><br><span class="line">set1.add(<span class="string">'hello'</span>)</span><br><span class="line"><span class="built_in">print</span>(set1)</span><br><span class="line"><span class="comment"># 删除</span></span><br><span class="line">set1.remove(<span class="string">'hello'</span>)</span><br><span class="line"><span class="built_in">print</span>(set1)</span><br></pre></td></tr></table></figure>
-<h5 id="4、总结"><a href="#4、总结" class="headerlink" title="4、总结"></a>4、总结</h5><p>字符串str：储存字符编码值,不可变</p>
+<h5 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h5><p>字符串str：储存字符编码值,不可变</p>
 <p>序列列表list：储存变量,可变</p>
 <p>序列元组tuple：储存变量,不可变</p>
 <p>序列字典dict：储存键值对,可变,散列;键不能重复且不可变</p>
@@ -542,7 +545,7 @@
 </li>
 </ul>
 <h5 id="六、易错题"><a href="#六、易错题" class="headerlink" title="六、易错题"></a>六、易错题</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#定义一个函数</span></span><br><span class="line">def <span class="built_in">test</span>(a,lst1=[1,2]):</span><br><span class="line">    <span class="comment"># 把a添加到列表中</span></span><br><span class="line">    <span class="keyword">if</span> a not <span class="keyword">in</span> lst1:</span><br><span class="line">      lst1.append(a)</span><br><span class="line">    <span class="built_in">return</span> lst1</span><br><span class="line"><span class="built_in">print</span>(f<span class="string">'第一次调用test函数的结果是:&#123;test(10)&#125;'</span>)<span class="comment">#1、2，10</span></span><br><span class="line"><span class="built_in">print</span>(f<span class="string">'第二次调用test函数的结果是:&#123;test(20)&#125;'</span>)<span class="comment">#1、2、20 正确的是:1，2，10，20</span></span><br><span class="line"><span class="built_in">print</span>(f<span class="string">'第三次调用test函数的结果是::&#123;test(30,lst1=[60,70])&#125;'</span>) <span class="comment">#正确的是:60，70，30</span></span><br><span class="line"><span class="built_in">print</span>(f<span class="string">'第四次调用test函数的结果是:&#123;test(40)&#125;'</span>)<span class="comment">#正确的是:1，2，10，20,40</span></span><br></pre></td></tr></table></figure>
-<h3 id="递归函数和高阶函数"><a href="#递归函数和高阶函数" class="headerlink" title="递归函数和高阶函数"></a>递归函数和高阶函数</h3><h5 id="1、递归函数"><a href="#1、递归函数" class="headerlink" title="1、递归函数"></a>1、递归函数</h5><p>递归函数: 在函数的内部自己调用自己，并且有退出函数的出口。</p>
+<h3 id="递归函数和高阶函数"><a href="#递归函数和高阶函数" class="headerlink" title="递归函数和高阶函数"></a>递归函数和高阶函数</h3><h5 id="一、递归函数"><a href="#一、递归函数" class="headerlink" title="一、递归函数"></a>一、递归函数</h5><p>递归函数: 在函数的内部自己调用自己，并且有退出函数的出口。</p>
 <p><strong>应用:</strong></p>
 <ul>
 <li>如果要遍历一个文件夹下面所有的文件，通常会使用递归来实现，</li>
@@ -550,7 +553,7 @@
 </ul>
 <p><img src="/images/pasted-64.png" alt="upload successful"></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 需求:计算一个正整数n的阶乘</span></span><br><span class="line">def <span class="built_in">test</span>(n: int)-&gt; int:</span><br><span class="line">  <span class="string">''</span><span class="string">'</span></span><br><span class="line"><span class="string">  计算一个数字n的阶乘</span></span><br><span class="line"><span class="string">  :param n:</span></span><br><span class="line"><span class="string">  :return:</span></span><br><span class="line"><span class="string">  '</span><span class="string">''</span></span><br><span class="line">  <span class="keyword">if</span> n == 1:</span><br><span class="line">    <span class="built_in">return</span> 1 <span class="comment">#递归函数退出的出口</span></span><br><span class="line">  <span class="built_in">return</span> n* <span class="built_in">test</span>(n-1)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">test</span>(2))</span><br></pre></td></tr></table></figure>
-<h5 id="2、匿名函数-lambda"><a href="#2、匿名函数-lambda" class="headerlink" title="2、匿名函数:lambda"></a>2、匿名函数:lambda</h5><p>如果一个函数有一个返回值，并且只有一句代码，可以使用lambda简化。</p>
+<h5 id="二、匿名函数-lambda"><a href="#二、匿名函数-lambda" class="headerlink" title="二、匿名函数:lambda"></a>二、匿名函数:lambda</h5><p>如果一个函数有一个返回值，并且只有一句代码，可以使用lambda简化。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lambda 参数列表: 表达式</span><br></pre></td></tr></table></figure>
 <p><strong>注意:</strong></p>
 <ul>
@@ -566,17 +569,17 @@
 
 <p>使用匿名函数和sort函数结合完成排序:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#需要给某个复杂的列表排序</span></span><br><span class="line">lst =[</span><br><span class="line">&#123;<span class="string">'name'</span>:<span class="string">'张三'</span>,<span class="string">'age'</span>: 34&#125;,</span><br><span class="line">&#123;<span class="string">'name'</span>:<span class="string">'李四'</span>,<span class="string">'age'</span>: 34&#125;,</span><br><span class="line">&#123;<span class="string">'name'</span>:<span class="string">'王五'</span>,<span class="string">'age'</span>: 34&#125;]</span><br><span class="line"><span class="comment"># 根据年龄来排序(降序)</span></span><br><span class="line">lst.sort(key=lambda item: item[<span class="string">'age'</span>],reverse=True)</span><br><span class="line"><span class="built_in">print</span>(lst)</span><br></pre></td></tr></table></figure>
-<h5 id="3、高阶函数"><a href="#3、高阶函数" class="headerlink" title="3、高阶函数"></a>3、高阶函数</h5><p>把函数作为参数传入，或者返回值是另外一个函数，这样的函数称为高阶函数，高阶函数是函数式编程的体现。函数式编程就是指这种高度抽象的编程范式。函数式编程大量使用函数，减少了代码的重复，因此程序比较短，开发速度较快。</p>
-<p>一、函数的参数是函数</p>
+<h5 id="三、高阶函数"><a href="#三、高阶函数" class="headerlink" title="三、高阶函数"></a>三、高阶函数</h5><p>把函数作为参数传入，或者返回值是另外一个函数，这样的函数称为高阶函数，高阶函数是函数式编程的体现。函数式编程就是指这种高度抽象的编程范式。函数式编程大量使用函数，减少了代码的重复，因此程序比较短，开发速度较快。</p>
+<p>1、函数的参数是函数</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#对任意两个数字，整理之后再求和</span></span><br><span class="line">def sum_num(a, b):</span><br><span class="line">   <span class="built_in">return</span> abs(a)+ abs(b)</span><br><span class="line"></span><br><span class="line"><span class="comment">#高阶函数的实现</span></span><br><span class="line">def sum_num2(a,b,f):</span><br><span class="line">    <span class="string">''</span><span class="string">'</span></span><br><span class="line"><span class="string">    :param a:</span></span><br><span class="line"><span class="string">    :param b:</span></span><br><span class="line"><span class="string">    :param f:就是对两个数字进行整理的函数</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    '</span><span class="string">''</span></span><br><span class="line">    <span class="built_in">return</span> f(a)+f(b)</span><br><span class="line"><span class="comment">#通过绝对值整理之后再求和</span></span><br><span class="line"><span class="built_in">print</span>(sum_num2(2,6,abs))</span><br><span class="line"><span class="comment">#通过平方整理之后再求和</span></span><br><span class="line"><span class="built_in">print</span>(sum_num2(2,6,lambda n:n**2))</span><br></pre></td></tr></table></figure>
-<p>二、函数的返回值是函数</p>
+<p>2、函数的返回值是函数</p>
 <p>高阶函数除了可以接受函数作为参数外，还可以把函数作为结果值返回，一个函数返回值(return)为另外一个函数。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">def sum_fun_b(*args):</span><br><span class="line">    def sum_a():</span><br><span class="line">        a=0</span><br><span class="line">        <span class="keyword">for</span> n <span class="keyword">in</span> args:</span><br><span class="line">            a=a+n</span><br><span class="line">        <span class="built_in">return</span> a</span><br><span class="line">    <span class="built_in">return</span> sum_a</span><br></pre></td></tr></table></figure>
-<h5 id="4、Python中内置的高阶函数"><a href="#4、Python中内置的高阶函数" class="headerlink" title="4、Python中内置的高阶函数"></a>4、Python中内置的高阶函数</h5><p>一、map函数</p>
+<h5 id="四、Python中内置的高阶函数"><a href="#四、Python中内置的高阶函数" class="headerlink" title="四、Python中内置的高阶函数"></a>四、Python中内置的高阶函数</h5><p>1、map函数</p>
 <p>map函数接收的是两个参数，一个是函数名，另外一个是序列，其功能是将序列中的数值作为函数的参数依次传入到函数值中执行，然后再返回到列表中。返回值是一个迭代器对象。</p>
 <p><img src="/images/pasted-65.png" alt="upload successful"></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># map函数</span></span><br><span class="line"><span class="comment"># 结果为[1,4,9,16,25,36]</span></span><br><span class="line"><span class="built_in">print</span>(list(map(lambda n:n **2,[1,2,3,4,5,6])))</span><br></pre></td></tr></table></figure>
-<p>二、reduce函数</p>
+<p>2、reduce函数</p>
 <p>reduce函数也是一个参数为函数，另一个参数为序列对象(比如: list列表)。其返回值为一个值而不是迭代器对象，故其常用与叠加、叠乘等等。</p>
 <p>函数详解:</p>
 <ul>
@@ -589,13 +592,61 @@
 <p><img src="/images/pasted-66.png" alt="upload successful"></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#reduce函数</span></span><br><span class="line">from functools import reduce</span><br><span class="line"><span class="built_in">print</span>(reduce(lambda x,y:x+y,[2,4,6,8,10],10))</span><br></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 案例:给你很长的字符串,统计字符串中每个单词出现的次数</span></span><br><span class="line">str1 = <span class="string">'hello world python hello python java hello python flask'</span></span><br><span class="line"><span class="comment"># 第一步,把单词切开</span></span><br><span class="line">lst =str1.split(<span class="string">''</span>)</span><br><span class="line"><span class="comment">#第二部:每个单词只要出现了,那么就代表有一次</span></span><br><span class="line"><span class="comment">#['hello':1,'world':1,...]</span></span><br><span class="line">new_lst = list(map(lambda item:&#123;item: 1&#125;,lst))</span><br><span class="line"><span class="comment">#第三步:调用reduce实现相同单词的叠加</span></span><br><span class="line">def func(dict1,dict2):</span><br><span class="line">    <span class="comment">#把dict1作为叠加的返回字典</span></span><br><span class="line">    key =list(dict2.items())[0][0] <span class="comment"># 得到dict2中的key(单词:world)</span></span><br><span class="line">    value =list(dict2.items())[0][1] <span class="comment"># 得到dict2中的value(1)</span></span><br><span class="line">    dict1[key]= dict1.get(key, 0)+ value</span><br><span class="line">    <span class="built_in">return</span> dict1</span><br><span class="line">from functools import reduce</span><br><span class="line"><span class="built_in">print</span>(reduce(func, new_lst))</span><br></pre></td></tr></table></figure>
-<p>三、filter函数</p>
+<p>3、filter函数</p>
 <p>Python内建的 filter()函数用于过滤序列，和 map()类似，filter()也接收一个函数和一个序列;但是不同的是 filter()把传入的函数依次作用于每个元素，然后根据返回值是 True 还是 False 决定元素的保留与丢弃。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">lst1 = [1,2,3,4,5,6,7,8,9,10]</span><br><span class="line"><span class="comment"># 偶数留下</span></span><br><span class="line"><span class="built_in">print</span>(list(filter(lambda n:n%2 ==0,lst1)))</span><br></pre></td></tr></table></figure>
-<p>四、sorted函数</p>
+<p>4、sorted函数</p>
 <p>Python内置的sorted()函数就可以对list进行排序;和序列中本身的sort函数类似。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sorted([36,5,-12,9,-21])</span><br><span class="line"><span class="comment">#[-21,-12,5,9,36]</span></span><br><span class="line"></span><br><span class="line">sorted([36,5,-12,9,-21],key=abs)</span><br><span class="line"><span class="comment">#[5,9,-12,-21,36]</span></span><br><span class="line"></span><br><span class="line">sorted([<span class="string">'bob'</span>,<span class="string">'about'</span>,<span class="string">'Zoo'</span>,<span class="string">'Credit'</span>],key=str.lower)</span><br><span class="line"><span class="comment">#['about','bob','Credit','Zoo']</span></span><br></pre></td></tr></table></figure>
 <p>默认情况下，对字符串排序，是按照ASCII的大小比较的，由于’Z’&lt;’a’，结果，大写字母Z会排在小写字母a的前面。所以，需要忽略大小写来比较两个字符串，实际上就是先把字符串都变成大写(或者都变成小写)，再比较。</p>
+<h3 id="文件和目录的操作"><a href="#文件和目录的操作" class="headerlink" title="文件和目录的操作"></a>文件和目录的操作</h3><h5 id="一、IO流-Stream"><a href="#一、IO流-Stream" class="headerlink" title="一、IO流(Stream)"></a>一、IO流(Stream)</h5><p>通过“流”的形式允许计算机程序使用相同的方式来访问不同的输入/输出源。stream是从起源(source)到接收的(sink)的有序数据。我们这里把输入/输出源对比成“水桶”，那么流就是“管道”。</p>
+<p><strong>文件流：就是源或者目标都是文件的流。</strong></p>
+<p><img src="/images/pasted-67.png" alt="upload successful"></p>
+<h5 id="二、文件流的操作"><a href="#二、文件流的操作" class="headerlink" title="二、文件流的操作"></a>二、文件流的操作</h5><ul>
+<li><p>打开文件流</p>
+<p>文件对象 = open(目标文件,访问模式(默认读),编码格式)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建（打开）文件流</span></span><br><span class="line">  f = open(<span class="string">'test.txt'</span>,mode=<span class="string">'r'</span>,encoding=<span class="string">'utf-8'</span>)</span><br></pre></td></tr></table></figure></li>
+<li><p>读操作</p>
+<p>文件对象.read()：默认读取整个文件。 或者可以读取指定大小的数据</p>
+<p>文件对象.readlines()</p>
+<p>文件对象.readline()</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建（打开）文件流</span></span><br><span class="line"> f = open(<span class="string">'test.txt'</span>,mode=<span class="string">'r'</span>,encoding=<span class="string">'utf-8'</span>)</span><br><span class="line"> <span class="comment"># 读取文件内容  </span></span><br><span class="line"> <span class="comment"># f.read(10) 读取10个字符</span></span><br><span class="line"> <span class="built_in">print</span>(f.read())</span><br><span class="line"> <span class="comment"># 每次读取一行数据</span></span><br><span class="line"> <span class="built_in">print</span>(f.readline())</span><br><span class="line"> <span class="comment"># 读取所有行数据，返回一个装载每一行数据的数组</span></span><br><span class="line"> <span class="built_in">print</span>(f.readlines())</span><br><span class="line"> <span class="comment"># 关闭文件流</span></span><br><span class="line"> f.close()</span><br></pre></td></tr></table></figure></li>
+<li><p>写操作</p>
+<p>文件对象.write()</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建（打开）文件流</span></span><br><span class="line">wf = open(<span class="string">'test1.txt'</span>,mode=<span class="string">'w+'</span>,encoding=<span class="string">'utf-8'</span>)</span><br><span class="line">wf.write(<span class="string">'测试写文件'</span>)</span><br><span class="line"><span class="comment"># 关闭文件流</span></span><br><span class="line">wf.close()</span><br></pre></td></tr></table></figure></li>
+<li><p>seek()指针操作</p>
+<p>seek(偏移量，起始位置)：起始位置分为：0:起始位置、1:当前位置、2:文件结尾位置</p>
+<p>tell()函数返回当前指针位置。</p>
+</li>
+<li><p>关闭</p>
+<p>close()</p>
+</li>
+<li><p>访问模式</p>
+</li>
+</ul>
+<p><img src="/images/pasted-69.png" alt="upload successful"></p>
+<h5 id="三、with语句"><a href="#三、with语句" class="headerlink" title="三、with语句"></a>三、with语句</h5><p>对于系统资源如文件、数据库连接、socket 而言，应用程序打开这些资源并执行完业务逻辑之后，必须做的一件事就是要关闭(释放)该资源。</p>
+<p>比如 Python 程序打开一个文件，往文件中写内容，写完之后，就要关闭该文件，如果不关闭会出现什么情况呢? 极端情况下会出现<strong> Too many open files </strong>的错误，因为系统允许你打开的最大文件数量是有限的。</p>
+<p><strong>使用with语句可以帮助程序员自动关闭资源</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">with open(<span class="string">'test2.txt'</span>,<span class="string">"w"</span>) as f:</span><br><span class="line">    f.write(<span class="string">"hello python"</span>)</span><br></pre></td></tr></table></figure>
+<h5 id="四、文件和文件夹的操作"><a href="#四、文件和文件夹的操作" class="headerlink" title="四、文件和文件夹的操作"></a>四、文件和文件夹的操作</h5><p>在Python中文件和文件夹的操作要借助os模块里面的相关功能。OS模块是Python标准库中的一个用于访问操作系统功能的模块。</p>
+<p>首先需要导入OS模块: import os</p>
+<p><img src="/images/pasted-70.png" alt="upload successful"></p>
+<p>代码演示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import os</span><br><span class="line"><span class="comment"># 打印系统名称</span></span><br><span class="line"><span class="built_in">print</span>(os.name)</span><br><span class="line"><span class="comment"># 打印当前工作目录</span></span><br><span class="line"><span class="built_in">print</span>(os.getcwd())</span><br></pre></td></tr></table></figure>
+<h3 id="Python面向对象编程"><a href="#Python面向对象编程" class="headerlink" title="Python面向对象编程"></a>Python面向对象编程</h3><h5 id="一、类和对象"><a href="#一、类和对象" class="headerlink" title="一、类和对象"></a>一、类和对象</h5><p>面向对象是一种抽象化的编程思想，很多编程语言中都有的一种思想。一切皆对象类:是对一系列具有相同 特征 和 行为 的事物的统称。</p>
+<p>对象:对象是基于类创建出来的真实存在的事物。</p>
+<p>1、定义类</p>
+<p><strong>注意:类名要满足标识符命名规则，同时遵循:大驼峰命名习惯</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">class 类名():</span><br><span class="line">    属性1</span><br><span class="line">    属性2</span><br><span class="line">    属性3</span><br><span class="line">    函数1</span><br><span class="line">    函数2</span><br></pre></td></tr></table></figure>
+<p>定义类示例：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 描述一辆汽车</span></span><br><span class="line">class Car():</span><br><span class="line"></span><br><span class="line">    def __init__(self):</span><br><span class="line">        <span class="comment"># 汽车的品牌</span></span><br><span class="line">        self.brand = None</span><br><span class="line">        <span class="comment"># 型号</span></span><br><span class="line">        self.type_name = None</span><br><span class="line">        <span class="comment"># 类型 SUV、轿车</span></span><br><span class="line">        self.category = None</span><br><span class="line"></span><br><span class="line">    def run(self): <span class="comment"># run函数就是车的行为</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"Car run"</span>)</span><br></pre></td></tr></table></figure>
+<p>2、创建对象</p>
+<p><strong>创建对象的过程也叫实例化对象。</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">c1 = Car()</span><br><span class="line">c1.run()</span><br></pre></td></tr></table></figure>
+<p>3、self是什么意思</p>
+<p>self指的是当前对象</p>
+<p>4、访问对象的属性和函数</p>
 
       
 
@@ -693,7 +744,7 @@
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          系统集成项目管理师
+          信息系统项目管理师
         
       </div>
     </a>
@@ -727,7 +778,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#注释"><span class="toc-number">1.</span> <span class="toc-text">注释</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#变量"><span class="toc-number">2.</span> <span class="toc-text">变量</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1、标识符（变量）命名规则"><span class="toc-number">2.0.1.</span> <span class="toc-text">1、标识符（变量）命名规则</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2、命名习惯"><span class="toc-number">2.0.2.</span> <span class="toc-text">2、命名习惯</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3、数据类型"><span class="toc-number">2.0.3.</span> <span class="toc-text">3、数据类型</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Python的输入与输出格式化"><span class="toc-number">3.</span> <span class="toc-text">Python的输入与输出格式化</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1、Python的输入"><span class="toc-number">3.0.1.</span> <span class="toc-text">1、Python的输入</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2、类型转换"><span class="toc-number">3.0.2.</span> <span class="toc-text">2、类型转换</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3、Python的输出格式化"><span class="toc-number">3.0.3.</span> <span class="toc-text">3、Python的输出格式化</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Python的运算符"><span class="toc-number">4.</span> <span class="toc-text">Python的运算符</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1、算数运算符"><span class="toc-number">4.0.1.</span> <span class="toc-text">1、算数运算符</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2、赋值运算符"><span class="toc-number">4.0.2.</span> <span class="toc-text">2、赋值运算符</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3、复合赋值运算符"><span class="toc-number">4.0.3.</span> <span class="toc-text">3、复合赋值运算符</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4、比较运算符"><span class="toc-number">4.0.4.</span> <span class="toc-text">4、比较运算符</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5、逻辑运算符"><span class="toc-number">4.0.5.</span> <span class="toc-text">5、逻辑运算符</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Python的流程控制语句"><span class="toc-number">5.</span> <span class="toc-text">Python的流程控制语句</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1、条件语句"><span class="toc-number">5.0.1.</span> <span class="toc-text">1、条件语句</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2、循环语句"><span class="toc-number">5.0.2.</span> <span class="toc-text">2、循环语句</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Python中的序列"><span class="toc-number">6.</span> <span class="toc-text">Python中的序列</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1、字符串"><span class="toc-number">6.0.1.</span> <span class="toc-text">1、字符串</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2、列表List"><span class="toc-number">6.0.2.</span> <span class="toc-text">2、列表List</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3、元组"><span class="toc-number">6.0.3.</span> <span class="toc-text">3、元组</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4、序列的通用操作"><span class="toc-number">6.0.4.</span> <span class="toc-text">4、序列的通用操作</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Python的内置容器"><span class="toc-number">7.</span> <span class="toc-text">Python的内置容器</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1、容器的概念"><span class="toc-number">7.0.1.</span> <span class="toc-text">1、容器的概念</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2、字典"><span class="toc-number">7.0.2.</span> <span class="toc-text">2、字典</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3、Set集合"><span class="toc-number">7.0.3.</span> <span class="toc-text">3、Set集合</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4、总结"><span class="toc-number">7.0.4.</span> <span class="toc-text">4、总结</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Python的函数"><span class="toc-number">8.</span> <span class="toc-text">Python的函数</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#一、函数的定义"><span class="toc-number">8.0.1.</span> <span class="toc-text">一、函数的定义</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#二、函数中的参数"><span class="toc-number">8.0.2.</span> <span class="toc-text">二、函数中的参数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#三、函数的返回值"><span class="toc-number">8.0.3.</span> <span class="toc-text">三、函数的返回值</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#四、局部变量和全局变量"><span class="toc-number">8.0.4.</span> <span class="toc-text">四、局部变量和全局变量</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#五、总结"><span class="toc-number">8.0.5.</span> <span class="toc-text">五、总结</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#六、易错题"><span class="toc-number">8.0.6.</span> <span class="toc-text">六、易错题</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#递归函数和高阶函数"><span class="toc-number">9.</span> <span class="toc-text">递归函数和高阶函数</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1、递归函数"><span class="toc-number">9.0.1.</span> <span class="toc-text">1、递归函数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2、匿名函数-lambda"><span class="toc-number">9.0.2.</span> <span class="toc-text">2、匿名函数:lambda</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3、高阶函数"><span class="toc-number">9.0.3.</span> <span class="toc-text">3、高阶函数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4、Python中内置的高阶函数"><span class="toc-number">9.0.4.</span> <span class="toc-text">4、Python中内置的高阶函数</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#注释"><span class="toc-number">1.</span> <span class="toc-text">注释</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#变量"><span class="toc-number">2.</span> <span class="toc-text">变量</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#一、标识符（变量）命名规则"><span class="toc-number">2.0.1.</span> <span class="toc-text">一、标识符（变量）命名规则</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#二、命名习惯"><span class="toc-number">2.0.2.</span> <span class="toc-text">二、命名习惯</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#三、数据类型"><span class="toc-number">2.0.3.</span> <span class="toc-text">三、数据类型</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Python的输入与输出格式化"><span class="toc-number">3.</span> <span class="toc-text">Python的输入与输出格式化</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#一、Python的输入"><span class="toc-number">3.0.1.</span> <span class="toc-text">一、Python的输入</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#二、类型转换"><span class="toc-number">3.0.2.</span> <span class="toc-text">二、类型转换</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#三、Python的输出格式化"><span class="toc-number">3.0.3.</span> <span class="toc-text">三、Python的输出格式化</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Python的运算符"><span class="toc-number">4.</span> <span class="toc-text">Python的运算符</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#一、算数运算符"><span class="toc-number">4.0.1.</span> <span class="toc-text">一、算数运算符</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#二、赋值运算符"><span class="toc-number">4.0.2.</span> <span class="toc-text">二、赋值运算符</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#三、复合赋值运算符"><span class="toc-number">4.0.3.</span> <span class="toc-text">三、复合赋值运算符</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#四、比较运算符"><span class="toc-number">4.0.4.</span> <span class="toc-text">四、比较运算符</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#五、逻辑运算符"><span class="toc-number">4.0.5.</span> <span class="toc-text">五、逻辑运算符</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Python的流程控制语句"><span class="toc-number">5.</span> <span class="toc-text">Python的流程控制语句</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#一、条件语句"><span class="toc-number">5.0.1.</span> <span class="toc-text">一、条件语句</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#二、循环语句"><span class="toc-number">5.0.2.</span> <span class="toc-text">二、循环语句</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Python中的序列"><span class="toc-number">6.</span> <span class="toc-text">Python中的序列</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#一、字符串"><span class="toc-number">6.0.1.</span> <span class="toc-text">一、字符串</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#二、列表List"><span class="toc-number">6.0.2.</span> <span class="toc-text">二、列表List</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#三、元组"><span class="toc-number">6.0.3.</span> <span class="toc-text">三、元组</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#四、序列的通用操作"><span class="toc-number">6.0.4.</span> <span class="toc-text">四、序列的通用操作</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Python的内置容器"><span class="toc-number">7.</span> <span class="toc-text">Python的内置容器</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#一、容器的概念"><span class="toc-number">7.0.1.</span> <span class="toc-text">一、容器的概念</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#二、字典"><span class="toc-number">7.0.2.</span> <span class="toc-text">二、字典</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#三、Set集合"><span class="toc-number">7.0.3.</span> <span class="toc-text">三、Set集合</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#四、总结"><span class="toc-number">7.0.4.</span> <span class="toc-text">四、总结</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Python的函数"><span class="toc-number">8.</span> <span class="toc-text">Python的函数</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#一、函数的定义"><span class="toc-number">8.0.1.</span> <span class="toc-text">一、函数的定义</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#二、函数中的参数"><span class="toc-number">8.0.2.</span> <span class="toc-text">二、函数中的参数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#三、函数的返回值"><span class="toc-number">8.0.3.</span> <span class="toc-text">三、函数的返回值</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#四、局部变量和全局变量"><span class="toc-number">8.0.4.</span> <span class="toc-text">四、局部变量和全局变量</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#五、总结"><span class="toc-number">8.0.5.</span> <span class="toc-text">五、总结</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#六、易错题"><span class="toc-number">8.0.6.</span> <span class="toc-text">六、易错题</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#递归函数和高阶函数"><span class="toc-number">9.</span> <span class="toc-text">递归函数和高阶函数</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#一、递归函数"><span class="toc-number">9.0.1.</span> <span class="toc-text">一、递归函数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#二、匿名函数-lambda"><span class="toc-number">9.0.2.</span> <span class="toc-text">二、匿名函数:lambda</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#三、高阶函数"><span class="toc-number">9.0.3.</span> <span class="toc-text">三、高阶函数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#四、Python中内置的高阶函数"><span class="toc-number">9.0.4.</span> <span class="toc-text">四、Python中内置的高阶函数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文件和目录的操作"><span class="toc-number">10.</span> <span class="toc-text">文件和目录的操作</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#一、IO流-Stream"><span class="toc-number">10.0.1.</span> <span class="toc-text">一、IO流(Stream)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#二、文件流的操作"><span class="toc-number">10.0.2.</span> <span class="toc-text">二、文件流的操作</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#三、with语句"><span class="toc-number">10.0.3.</span> <span class="toc-text">三、with语句</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#四、文件和文件夹的操作"><span class="toc-number">10.0.4.</span> <span class="toc-text">四、文件和文件夹的操作</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Python面向对象编程"><span class="toc-number">11.</span> <span class="toc-text">Python面向对象编程</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#一、类和对象"><span class="toc-number">11.0.1.</span> <span class="toc-text">一、类和对象</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
