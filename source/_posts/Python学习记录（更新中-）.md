@@ -994,3 +994,128 @@ self指的是当前对象（实例）本身
 2、__init__()，在创建一个对象时默认被调用，不需要手动调用
 3、__init__(se1f)中的se1f参数，不需要开发者传递，python解释器会自动把当前的对象引用传递过去
 ```
+2、str函数(toString)
+
+``` bash
+当使用print输出对象的时候，默认打印对象的内存地址。如果类定义了__str__方法，那么就会打印，在这个函数中 return 的数据。
+```
+3、del函数
+``` bash
+当删除对象时，python解释器也会默认调用__de1__()函数。
+```
+##### 三、类属性和实例属性
+- 类属性:就是 类 所拥有的属性，它被 该类的所有实例对象 所共有。
+- 实例属性:就是 单个对象 或者 实例才能拥有的属性。
+
+1、类属性
+
+记录的某项数据 始终保持一致时，则定义类属性。
+实例属性 要求 每个对象 为其 单独开辟一份内存空间 来记录数据，而 类属性 为全类所共有 ，仅占用一份内存，更加节省内存空间。
+``` bash
+class Person():
+
+    specia = '人' # 类属性 物种名称
+
+    # self:指的是当前对象（实例）本身
+    def __init__(self,name):
+        # 汽车的品牌
+        self.name = name # 对象属性、成员属性、实例属性
+        print(name)
+```
+类属性只能通过类对象修改，不能通过实例对象修改，如果通过实例对象修改类属性，表示的是创建了一个实例属性。
+##### 四、类函数和静态函数
+
+1、类函数
+
+需要用装饰器 @classmethod 来标识其为类函数，对于类函数，<strong>第一个参数必须是类(当前类)，</strong>一般以 c1s 作为第一个参数。但是:也可以命名其他的。一般习惯上都用cls。
+``` bash
+# 描述一个人
+class Person():
+
+    specia = '人' # 类属性 物种名称
+
+    # self:指的是当前对象（实例）本身
+    def __init__(self,name): # 对象函数、成员函数、实例函数
+        # 汽车的品牌
+        self.name = name # 对象属性、成员属性、实例属性
+        print(name)
+
+    def eat(self, food):  # 对象函数、成员函数、实例函数
+        print(f'吃{food}')
+
+    @classmethod
+    def work(cls,type): # 类函数
+        print(type)
+
+p = Person('测试')
+p.eat("ce")
+#类函数调用,两种方法
+p.work("kk")
+Person.work("ll")
+```
+2、静态函数
+
+需要通过装饰器 @staticmethod 来进行修饰，<strong>静态函数既不需要传递类对象也不需要传递实例对象(形参没有self/cls)。</strong>静态函数也能够通过<strong>实例对象 和 类对象 </strong>去访问。
+
+特点:
+- 当方法中 既不需要使用实例对象(如实例对象，实例属性)，也不需要使用类对象(如类属性、类方法、创建实例等)时，定义静态方法
+- 取消不需要的参数传递，有利于 减少不必要的内存占用和性能消耗
+
+``` bash
+
+# 描述一个人
+class Person():
+
+    specia = '人' # 类属性 物种名称
+
+    # self:指的是当前对象（实例）本身
+    def __init__(self,name): # 对象函数、成员函数、实例函数
+        # 汽车的品牌
+        self.name = name # 对象属性、成员属性、实例属性
+        print(name)
+        
+    @staticmethod
+    def run():  # 静态函数
+        print("跑起来")
+
+p = Person('测试')
+#静态函数调用,两种方法
+p.run()
+Person.run()
+
+```
+### 继承和重写
+
+##### 一、继承
+Python面向对象的继承指的是多个类之间的所属关系，即子类默认继承父类的所有属性和函数。
+<strong>在Python中，所有类默认继承object类，object类是顶级类或基类;</strong>
+
+1、单继承
+
+![upload successful](/images/pasted-71.png)
+
+``` bash
+#继承
+# 父类，动物类
+class Animal:
+    name = "动物"
+    def say(self):
+        print("I am animal")
+
+#子类，dog类 单继承
+class Dog(Animal):
+    def work(self):
+        print("我看家")
+
+d = Dog()
+d.say()
+d.work()
+#子类对象的类型，是子类类型，同时也是父类类型
+print(type(d))
+# 判断对象类型
+print(isinstance(d, Dog)) #True
+print(isinstance(d, Animal)) #True
+#判断Dog是否是Animal的子类
+print(issubclass(Dog, Animal))#True
+```
+在编写类时，并不是每次都要从空白开始。当要编写的类和另一个已经存在的类之间存在一定的继承关系时，就可以通过继承来达到代码重用的目的，提高开发效率。
